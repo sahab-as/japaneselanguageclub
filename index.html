@@ -21,49 +21,61 @@
         header h1 { color: var(--primary-color); font-size: 28px; }
         header p { color: var(--text-muted); font-size: 14px; margin-top: 5px; }
         main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .container { background-color: var(--card-bg); border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); width: 100%; max-width: 600px; padding: 30px; }
+        .container { background-color: var(--card-bg); border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); width: 100%; max-width: 600px; padding: 30px; margin-top: 20px; margin-bottom: 20px; }
         .screen { display: none; }
         .screen.active { display: block; }
-        .lesson-grid { display: grid; gap: 15px; margin-top: 25px; }
-        .lesson-btn { background-color: var(--card-bg); border: 2px solid var(--border); border-radius: 12px; padding: 18px; font-size: 18px; font-weight: 600; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; }
+        
+        .section-title { margin-top: 30px; margin-bottom: 10px; color: var(--text-main); font-size: 22px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .lesson-grid { display: grid; gap: 15px; margin-top: 15px; }
+        
+        /* Vocabulary Button */
+        .lesson-btn { background-color: var(--card-bg); border: 2px solid var(--border); border-radius: 12px; padding: 18px; font-size: 18px; font-weight: 600; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;}
         .lesson-btn:hover { border-color: var(--primary-color); background-color: #f5f3ff; }
         .lesson-btn span { font-size: 14px; background-color: #e0e7ff; color: var(--primary-color); padding: 4px 10px; border-radius: 20px; }
+        
+        /* Grammar Button (Light Pink) */
+        .grammar-btn { background-color: #ffe4e6; border-color: #fecdd3; }
+        .grammar-btn:hover { background-color: #f5f3ff !important; border-color: var(--primary-color) !important; }
+        .grammar-btn span { background-color: #fce7f3; color: #be123c; }
+        .grammar-btn:hover span { background-color: #e0e7ff; color: var(--primary-color); }
+
         .quiz-header { display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
-        .back-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 600; }
+        .back-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 600; font-size: 16px;}
         .progress-bar-container { background-color: var(--border); border-radius: 10px; height: 8px; margin-bottom: 25px; overflow: hidden; }
         .progress-bar { background-color: var(--primary-color); height: 100%; width: 0%; transition: width 0.3s ease; }
         .question-box { text-align: center; margin-bottom: 30px; }
-        .question-title { font-size: 14px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; }
+        .question-title { font-size: 14px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; font-weight: bold;}
         .japanese-word { font-size: 42px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; }
-        
-        /* New Romaji style - ইংরেজি উচ্চারণ */
         .romaji-word { font-size: 18px; color: var(--text-muted); font-style: italic; margin-bottom: 15px; }
 
         .options-list { display: grid; gap: 12px; margin-bottom: 25px; }
-        .option-item { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 15px; font-size: 16px; font-weight: 500; cursor: pointer; text-align: left; }
-        .option-item:hover:not([disabled]) { background-color: #f8fafc; border-color: var(--text-muted); }
+        .option-item { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 15px; font-size: 16px; font-weight: 500; cursor: pointer; text-align: left; transition: all 0.2s ease;}
+        .option-item:hover:not([disabled]) { background-color: #f8fafc; border-color: var(--primary-color); }
         .option-item.correct { background-color: #d1fae5 !important; border-color: var(--success) !important; color: #065f46 !important; }
         .option-item.wrong { background-color: #fee2e2 !important; border-color: var(--danger) !important; color: #991b1b !important; }
+        
         .action-container { display: flex; justify-content: flex-end; }
         .next-btn { background-color: var(--primary-color); color: white; border: none; border-radius: 10px; padding: 12px 25px; font-size: 16px; font-weight: 600; cursor: pointer; display: none; }
+        
         .result-box { text-align: center; padding: 20px 0; }
         .score-large { font-size: 48px; font-weight: 800; color: var(--primary-color); margin-bottom: 10px; }
         .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
-        .primary-btn { background-color: var(--primary-color); color: white; border: none; border-radius: 10px; padding: 12px 25px; font-size: 16px; cursor: pointer; }
+        .primary-btn { background-color: var(--primary-color); color: white; border: none; border-radius: 10px; padding: 12px 25px; font-size: 16px; cursor: pointer; font-weight: bold;}
     </style>
 </head>
 <body>
 
     <header>
-        <h1> Japanese Language Learning Club</h1> 
-      <h4> This site created by sahabalshoaib </h4>
-        <p>JLPT N5 Vocabulary Training quiz </p>
+        <h1>Japanese Language Learning Club</h1> 
+        <h4>This site created by sahabalshoaib</h4>
+        <p>JLPT N5 Vocabulary & Grammar Training Quiz</p>
     </header>
 
     <main>
         <div class="container">
             <div id="home-screen" class="screen active">
-                <h2>Choose a Vocabulary Lesson</h2> 
+                
+                <h2 class="section-title">📖 Vocabulary Lessons</h2> 
                 <div class="lesson-grid">
                     <button class="lesson-btn" onclick="startQuiz('lesson1')">Lesson 1: Greetings & People <span>50 Words</span></button>
                     <button class="lesson-btn" onclick="startQuiz('lesson2')">Lesson 2: Time & Numbers <span>50 Words</span></button>
@@ -75,8 +87,15 @@
                     <button class="lesson-btn" onclick="startQuiz('lesson8')">Lesson 8: Daily Life & Hobbies <span>50 Words</span></button>
                     <button class="lesson-btn" onclick="startQuiz('lesson9')">Lesson 9: House & Food items <span>50 Words</span></button>
                     <button class="lesson-btn" onclick="startQuiz('lesson10')">Lesson 10: Places & Society <span>50 Words</span></button>
-                    
                 </div>
+
+                <h2 class="section-title">✍️ Grammar Lessons</h2> 
+                <div class="lesson-grid">
+                    <button class="lesson-btn grammar-btn" onclick="startQuiz('grammar1')">Lesson 1: Particles (は, が, を...) <span>50 Exercises</span></button>
+                    <button class="lesson-btn grammar-btn" onclick="startQuiz('grammar2')">Lesson 2: Verbs (ます, ません...) <span>50 Exercises</span></button>
+                    <button class="lesson-btn grammar-btn" onclick="startQuiz('grammar3')">Lesson 3: Adjectives & Sentences <span>50 Exercises</span></button>
+                </div>
+
             </div>
 
             <div id="quiz-screen" class="screen">
@@ -86,10 +105,8 @@
                 </div>
                 <div class="progress-bar-container"><div id="progress-bar" class="progress-bar"></div></div>
                 <div class="question-box">
-                    <div class="question-title">What is the meaning of this word?</div>
-                    <!-- জাপানিজ লেখা -->
+                    <div id="question-title" class="question-title">What is the meaning of this word?</div>
                     <div id="japanese-word" class="japanese-word"></div>
-                    <!-- ইংরেজি উচ্চারণ (Romaji) -->
                     <div id="romaji-word" class="romaji-word"></div>
                 </div>
                 <div id="options-list" class="options-list"></div>
@@ -100,7 +117,7 @@
                 <div class="result-box">
                     <div style="font-size: 60px;">🎉</div>
                     <div id="score-large" class="score-large"></div>
-                    <div id="result-text" style="font-size: 18px; color: var(--text-main); margin-bottom: 30px;"></div>
+                    <div id="result-text" style="font-size: 22px; font-weight:bold; color: var(--text-main); margin-bottom: 30px;"></div>
                     <div class="btn-group">
                         <button class="primary-btn" onclick="goHome()">Back to Lessons</button>
                         <button class="primary-btn" style="background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color);" onclick="restartLesson()">Retry Quiz</button>
@@ -111,70 +128,158 @@
     </main>
 
     <script>
-        // ২৫০ টি শব্দের পূর্ণাঙ্গ ডাটাবেজ
         const rawData = {
             "lesson1": [
-                ["ありがとう", "arigatou", "Thank you", "ধন্যবাদ"], ["こんにちは", "konnichiwa", "Hello", "শুভ অপরাহ্ন/হ্যালো"], ["おはよう", "ohayou", "Good morning", "শুভ সকাল"], ["さようなら", "sayounara", "Goodbye", "বিদায়"], ["すみません", "sumimasen", "Excuse me/Sorry", "মাফ করবেন"], ["ごめんなさい", "gomen nasai", "I'm sorry", "আমি দুঃখিত"], ["はい", "hai", "Yes", "হ্যাঁ"], ["いいえ", "iie", "No", "না"], ["わたし", "watashi", "I/Me", "আমি"], ["あなた", "anata", "You", "আপনি/তুমি"], ["かれ", "kare", "He", "সে (পুরুষ)"], ["かのじょ", "kanojo", "She", "সে (মহিলা)"], ["ひと", "hito", "Person", "মানুষ"], ["おとこ", "otoko", "Man", "পুরুষ"], ["おんな", "onna", "Woman", "মহিলা"], ["おとこのこ", "otokonoko", "Boy", "বালক"], ["おんなのこ", "onnanoko", "Girl", "বালিকা"], ["こども", "kodomo", "Child", "শিশু"], ["おとな", "otona", "Adult", "প্রাপ্তবয়স্ক"], ["ともだち", "tomodachi", "Friend", "বন্ধু"], ["かぞく", "kazoku", "Family", "পরিবার"], ["ちち", "chichi", "My father", "আমার বাবা"], ["はは", "haha", "My mother", "আমার মা"], ["おとうさん", "otousan", "Father", "বাবা"], ["おかあさん", "okaasan", "Mother", "মা"], ["あに", "ani", "Older brother", "আমার বড় ভাই"], ["あね", "ane", "Older sister", "আমার বড় বোন"], ["おにいさん", "oniisan", "Older brother", "বড় ভাই"], ["おねえさん", "oneesan", "Older sister", "বড় বোন"], ["おとうと", "otouto", "Younger brother", "ছোট ভাই"], ["いもうと", "imouto", "Younger sister", "ছোট বোন"], ["そふ", "sofu", "Grandfather", "দাদা/নানা"], ["そぼ", "sobo", "Grandmother", "দাদি/নানি"], ["せんせい", "sensei", "Teacher", "শিক্ষক"], ["がくせい", "gakusei", "Student", "ছাত্র/ছাত্রী"], ["いしゃ", "isha", "Doctor", "ডাক্তার"], ["けいさつかん", "keisatsukan", "Police", "পুলিশ"], ["なまえ", "namae", "Name", "নাম"], ["だれ", "dare", "Who", "কে"], ["みんな", "minna", "Everyone", "সবাই"], ["みなさん", "minasan", "Everyone", "আপনারা সবাই"], ["おなまえ", "onamae", "Name", "নাম"], ["こちら", "kochira", "This person", "এই দিকে"], ["あちら", "achira", "That person", "ওই দিকে"], ["どちら", "dochira", "Which person", "কোন দিকে"], ["どうぞ", "douzo", "Please", "দয়া করে"], ["どうも", "doumo", "Thanks", "ধন্যবাদ"], ["いただきます", "itadakimasu", "Let's eat", "খাবার শুরুর আগে"], ["ごちそうさま", "gochisousama", "Thanks for meal", "খাবার শেষে"], ["ただいま", "tadaima", "I'm back", "আমি ফিরেছি"]
+                ["ありがとう", "arigatou", "Thank you", "ধন্যবাদ"], ["こんにちは", "konnichiwa", "Hello", "শুভ অপরাহ্ন/হ্যালো"], ["おはよう", "ohayou", "Good morning", "শুভ সকাল"], ["さようなら", "sayounara", "Goodbye", "বিদায়"], ["すみません", "sumimasen", "Excuse me/Sorry", "মাফ করবেন"], ["ごめんなさい", "gomen nasai", "I'm sorry", "আমি দুঃখিত"], ["はい", "hai", "Yes", "হ্যাঁ"], ["いいえ", "iie", "No", "না"], ["わたし", "watashi", "I/Me", "আমি"], ["あなた", "anata", "You", "আপনি/তুমি"], ["かれ", "kare", "He", "সে (পুরুষ)"], ["かのじょ", "kanojo", "She", "সে (মহিলা)"], ["ひと", "hito", "Person", "মানুষ"], ["おとこ", "otoko", "Man", "পুরুষ"], ["おんな", "onna", "Woman", "মহিলা"], ["おとこのこ", "otokonoko", "Boy", "বালক"], ["おんなのこ", "onnanoko", "Girl", "বালিকা"], ["こども", "kodomo", "Child", "শিশু"], ["おとな", "otona", "Adult", "প্রাপ্তবয়স্ক"], ["ともだち", "tomodachi", "Friend", "বন্ধু"], ["かぞく", "kazoku", "Family", "পরিবার"], ["ちち", "chichi", "My father", "আমার বাবা"], ["はは", "haha", "My mother", "আমার মা"], ["おとうさん", "otousan", "Father", "বাবা"], ["おかあさん", "okaasan", "Mother", "মা"], ["あに", "ani", "Older brother", "আমার বড় ভাই"], ["あね", "ane", "Older sister", "আমার বড় বোন"], ["おにいさん", "oniisan", "Older brother", "বড় ভাই"], ["おねえさん", "oneesan", "Older sister", "বড় বোন"], ["おとうと", "otouto", "Younger brother", "ছোট ভাই"], ["いもうと", "imouto", "Younger sister", "ছোট বোন"], ["そふ", "sofu", "Grandfather", "দাদা/নানা"], ["そぼ", "sobo", "Grandmother", "দাদি/নানি"], ["せんせい", "sensei", "Teacher", "শিক্ষক"], ["がくせい", "gakusei", "Student", "ছাত্র/ছাত্রী"], ["いしゃ", "isha", "Doctor", "ডাক্তার"], ["けいさつかん", "keisatsukan", "Police", "পুলিশ"], ["なまえ", "namae", "Name", "নাম"], ["だれ", "dare", "Who", "কে"], ["みんな", "minna", "Everyone", "সবাই"], ["みなさん", "minasan", "Everyone", "আপনারা সবাই"], ["おなまえ", "onamae", "Name", "নাম"], ["こちら", "kochira", "This person", "এই দিকে"], ["あちら", "achira", "That person", "ওই দিকে"], ["どちら", "dochira", "Which person", "কোন দিকে"], ["どうぞ", "douzo", "Please", "দয়া করে"], ["どうも", "doumo", "Thanks", "ধন্যবাদ"], ["いただきます", "itadakimasu", "Let's eat", "খাবার শুরুর আগে"], ["ごちそうさま", "gochisousama", "Thanks for meal", "খাবার শেষে"], ["ただいま", "tadaima", "I'm back", "আমি ফিরেছি"]
             ],
             "lesson2": [
-                ["いち", "ichi", "One", "এক"], ["に", "ni", "Two", "দুই"], ["さん", "san", "Three", "তিন"], ["よん", "yon", "Four", "চার"], ["ご", "go", "Five", "পাঁচ"], ["ろく", "roku", "Six", "ছয়"], ["なな", "nana", "Seven", "সাত"], ["はち", "hachi", "Eight", "আট"], ["きゅう", "kyuu", "Nine", "নয়"], ["じゅう", "juu", "Ten", "দশ"], ["ひゃく", "hyaku", "Hundred", "একশো"], ["せん", "sen", "Thousand", "এক হাজার"], ["まん", "man", "Ten thousand", "দশ হাজার"], ["じ", "ji", "O'clock", "টা (সময়)"], ["ふん", "fun", "Minute", "মিনিট"], ["はん", "han", "Half", "অর্ধেক"], ["いま", "ima", "Now", "এখন"], ["きょう", "kyou", "Today", "আজ"], ["あした", "ashita", "Tomorrow", "আগামীকাল"], ["あさって", "asatte", "Day after tomorrow", "আগামী পরশু"], ["きのう", "kinou", "Yesterday", "গতকাল"], ["おととい", "ototoi", "Day before yesterday", "গত পরশু"], ["まいにち", "mainichi", "Every day", "প্রতিদিন"], ["げつようび", "getsuyoubi", "Monday", "সোমবার"], ["かようび", "kayoubi", "Tuesday", "মঙ্গলবার"], ["すいようび", "suiyoubi", "Wednesday", "বুধবার"], ["もくようび", "mokuyoubi", "Thursday", "বৃহস্পতিবার"], ["きんようび", "kinyoubi", "Friday", "শুক্রবার"], ["どようび", "doyoubi", "Saturday", "শনিবার"], ["にちようび", "nichiyoubi", "Sunday", "রবিবার"], ["しゅう", "shuu", "Week", "সপ্তাহ"], ["つき", "tsuki", "Month", "মাস"], ["とし", "toshi", "Year", "বছর"], ["あさ", "asa", "Morning", "সকাল"], ["ひる", "hiru", "Afternoon", "দুপুর"], ["よる", "yoru", "Night", "রাত"], ["ばん", "ban", "Evening", "সন্ধ্যা"], ["はる", "haru", "Spring", "বসন্তকাল"], ["なつ", "natsu", "Summer", "গ্রীষ্মকাল"], ["あき", "aki", "Autumn", "শরৎকাল"], ["ふゆ", "fuyu", "Winter", "শীতকাল"], ["あか", "aka", "Red", "লাল"], ["あお", "ao", "Blue", "নীল"], ["しろ", "shiro", "White", "সাদা"], ["くろ", "kuro", "Black", "কালো"], ["きいろ", "kiiro", "Yellow", "হলুদ"], ["ちゃいろ", "chairo", "Brown", "বাদামী"], ["なに", "nani", "What", "কী"], ["いつ", "itsu", "When", "কখন"], ["じかん", "jikan", "Time", "সময়"]
+                ["いち", "ichi", "One", "এক"], ["に", "ni", "Two", "দুই"], ["さん", "san", "Three", "তিন"], ["よん", "yon", "Four", "চার"], ["ご", "go", "Five", "পাঁচ"], ["ろく", "roku", "Six", "ছয়"], ["なな", "nana", "Seven", "সাত"], ["はち", "hachi", "Eight", "আট"], ["きゅう", "kyuu", "Nine", "নয়"], ["じゅう", "juu", "Ten", "দশ"], ["ひゃく", "hyaku", "Hundred", "একশো"], ["せん", "sen", "Thousand", "এক হাজার"], ["まん", "man", "Ten thousand", "দশ হাজার"], ["じ", "ji", "O'clock", "টা (সময়)"], ["ふん", "fun", "Minute", "মিনিট"], ["はん", "han", "Half", "অর্ধেক"], ["いま", "ima", "Now", "এখন"], ["きょう", "kyou", "Today", "আজ"], ["あした", "ashita", "Tomorrow", "আগামীকাল"], ["あさって", "asatte", "Day after tomorrow", "আগামী পরশু"], ["きのう", "kinou", "Yesterday", "গতকাল"], ["おととい", "ototoi", "Day before yesterday", "গত পরশু"], ["まいにち", "mainichi", "Every day", "প্রতিদিন"], ["げつようび", "getsuyoubi", "Monday", "সোমবার"], ["かようび", "kayoubi", "Tuesday", "মঙ্গলবার"], ["すいようび", "suiyoubi", "Wednesday", "বুধবার"], ["もくようび", "mokuyoubi", "Thursday", "বৃহস্পতিবার"], ["きんようび", "kinyoubi", "Friday", "শুক্রবার"], ["どようび", "doyoubi", "Saturday", "শনিবার"], ["にちようび", "nichiyoubi", "Sunday", "রবিবার"], ["しゅう", "shuu", "Week", "সপ্তাহ"], ["つき", "tsuki", "Month", "মাস"], ["とし", "toshi", "Year", "বছর"], ["あさ", "asa", "Morning", "সকাল"], ["ひる", "hiru", "Afternoon", "দুপুর"], ["よる", "yoru", "Night", "রাত"], ["ばん", "ban", "Evening", "সন্ধ্যা"], ["はる", "haru", "Spring", "বসন্তকাল"], ["なつ", "natsu", "Summer", "গ্রীষ্মকাল"], ["あき", "aki", "Autumn", "শরৎকাল"], ["ふゆ", "fuyu", "Winter", "শীতকাল"], ["あか", "aka", "Red", "লাল"], ["あお", "ao", "Blue", "নীল"], ["しろ", "shiro", "White", "সাদা"], ["くろ", "kuro", "Black", "কালো"], ["きいろ", "kiiro", "Yellow", "হলুদ"], ["ちゃいろ", "chairo", "Brown", "বাদামী"], ["なに", "nani", "What", "কী"], ["いつ", "itsu", "When", "কখন"], ["じかん", "jikan", "Time", "সময়"]
             ],
             "lesson3": [
-                ["ここ", "koko", "Here", "এখানে"], ["そこ", "soko", "There", "সেখানে"], ["あそこ", "asoko", "Over there", "ওইখানে"], ["どこ", "doko", "Where", "কোথায়"], ["へや", "heya", "Room", "রুম"], ["いえ", "ie", "House", "বাড়ি"], ["うち", "uchi", "Home", "নিজের বাড়ি"], ["がっこう", "gakkou", "School", "স্কুল"], ["えき", "eki", "Station", "স্টেশন"], ["びょういん", "byouin", "Hospital", "হাসপাতাল"], ["ぎんこう", "ginkou", "Bank", "ব্যাংক"], ["ゆうびんきょく", "yuubinkyoku", "Post office", "ডাকঘর"], ["こうえん", "kouen", "Park", "পার্ক"], ["としょかん", "toshokan", "Library", "লাইব্রেরি"], ["たてもの", "tatemono", "Building", "ভবন"], ["みち", "michi", "Road", "রাস্তা"], ["こうさてん", "kousaten", "Intersection", "মোড়"], ["みぎ", "migi", "Right", "ডান"], ["ひだり", "hidari", "Left", "বাম"], ["まえ", "mae", "Front", "সামনে"], ["うしろ", "ushiro", "Back", "পেছনে"], ["うえ", "ue", "Up", "উপরে"], ["した", "shita", "Down", "নিচে"], ["なか", "naka", "Inside", "ভেতরে"], ["そと", "soto", "Outside", "বাইরে"], ["となり", "tonari", "Next to", "পাশে"], ["ちかく", "chikaku", "Near", "কাছে"], ["くるま", "kuruma", "Car", "গাড়ি"], ["じてんしゃ", "jitensha", "Bicycle", "সাইকেল"], ["ばす", "basu", "Bus", "বাস"], ["でんしゃ", "densha", "Train", "ট্রেন"], ["ちかてつ", "chikatetsu", "Subway", "পাতাল রেল"], ["ひこうき", "hikouki", "Airplane", "উড়োজাহাজ"], ["ふね", "fune", "Ship", "জাহাজ"], ["そら", "sora", "Sky", "আকাশ"], ["うみ", "umi", "Sea", "সাগর"], ["やま", "yama", "Mountain", "পাহাড়"], ["かわ", "kawa", "River", "নদী"], ["き", "ki", "Tree", "গাছ"], ["はな", "hana", "Flower", "ফুল"], ["いぬ", "inu", "Dog", "কুকুর"], ["ねこ", "neko", "Cat", "বিড়াল"], ["とり", "tori", "Bird", "পাখি"], ["さかな", "sakana", "Fish", "মাছ"], ["あめ", "ame", "Rain", "বৃষ্টি"], ["ゆき", "yuki", "Snow", "তুষার"], ["てんき", "tenki", "Weather", "আবহাওয়া"], ["かぜ", "kaze", "Wind", "বাতাস"], ["まち", "machi", "Town", "শহর"], ["みせ", "mise", "Shop", "দোকান"]
+                ["ここ", "koko", "Here", "এখানে"], ["そこ", "soko", "There", "সেখানে"], ["あそこ", "asoko", "Over there", "ওইখানে"], ["どこ", "doko", "Where", "কোথায়"], ["へや", "heya", "Room", "রুম"], ["いえ", "ie", "House", "বাড়ি"], ["うち", "uchi", "Home", "নিজের বাড়ি"], ["がっこう", "gakkou", "School", "স্কুল"], ["えき", "eki", "Station", "স্টেশন"], ["びょういん", "byouin", "Hospital", "হাসপাতাল"], ["ぎんこう", "ginkou", "Bank", "ব্যাংক"], ["ゆうびんきょく", "yuubinkyoku", "Post office", "ডাকঘর"], ["こうえん", "kouen", "Park", "পার্ক"], ["としょかん", "toshokan", "Library", "লাইব্রেরি"], ["たてもの", "tatemono", "Building", "ভবন"], ["みち", "michi", "Road", "রাস্তা"], ["こうさてん", "kousaten", "Intersection", "মোড়"], ["みぎ", "migi", "Right", "ডান"], ["ひだり", "hidari", "Left", "বাম"], ["まえ", "mae", "Front", "সামনে"], ["うしろ", "ushiro", "Back", "পেছনে"], ["うえ", "ue", "Up", "উপরে"], ["した", "shita", "Down", "নিচে"], ["なか", "naka", "Inside", "ভেতরে"], ["そと", "soto", "Outside", "বাইরে"], ["となり", "tonari", "Next to", "পাশে"], ["ちかく", "chikaku", "Near", "কাছে"], ["くるま", "kuruma", "Car", "গাড়ি"], ["じてんしゃ", "jitensha", "Bicycle", "সাইকেল"], ["ばす", "basu", "Bus", "বাস"], ["でんしゃ", "densha", "Train", "ট্রেন"], ["ちかてつ", "chikatetsu", "Subway", "পাতাল রেল"], ["ひこうき", "hikouki", "Airplane", "উড়োজাহাজ"], ["ふね", "fune", "Ship", "জাহাজ"], ["そら", "sora", "Sky", "আকাশ"], ["うみ", "umi", "Sea", "সাগর"], ["やま", "yama", "Mountain", "পাহাড়"], ["かわ", "kawa", "River", "নদী"], ["き", "ki", "Tree", "গাছ"], ["はな", "hana", "Flower", "ফুল"], ["いぬ", "inu", "Dog", "কুকুর"], ["ねこ", "neko", "Cat", "বিড়াল"], ["とり", "tori", "Bird", "পাখি"], ["さかな", "sakana", "Fish", "মাছ"], ["あめ", "ame", "Rain", "বৃষ্টি"], ["ゆき", "yuki", "Snow", "তুষার"], ["てんき", "tenki", "Weather", "আবহাওয়া"], ["かぜ", "kaze", "Wind", "বাতাস"], ["まち", "machi", "Town", "শহর"], ["みせ", "mise", "Shop", "দোকান"]
             ],
             "lesson4": [
-                ["ほん", "hon", "Book", "বই"], ["じしょ", "jisho", "Dictionary", "অভিধান"], ["ざっし", "zasshi", "Magazine", "ম্যাগাজিন"], ["しんぶん", "shinbun", "Newspaper", "সংবাদপত্র"], ["のうと", "nouto", "Notebook", "খাতা"], ["てちょう", "techou", "Pocket notebook", "ডায়েরি"], ["えんぴつ", "enpitsu", "Pencil", "পেন্সিল"], ["かばん", "kaban", "Bag", "ব্যাগ"], ["かさ", "kasa", "Umbrella", "ছাতা"], ["とけい", "tokei", "Clock", "ঘড়ি"], ["つくえ", "tsukue", "Desk", "ডেস্ক"], ["いす", "isu", "Chair", "চেয়ার"], ["まど", "mado", "Window", "জানালা"], ["どあ", "doa", "Door", "দরজা"], ["てれび", "terebi", "Television", "টেলিভিশন"], ["らじお", "rajio", "Radio", "রেডিও"], ["かめら", "kamera", "Camera", "ক্যামেরা"], ["ぱそこん", "pasokon", "PC", "পিসি/কম্পিউটার"], ["けいたい", "keitai", "Mobile", "মোবাইল ফোন"], ["みず", "mizu", "Water", "পানি"], ["おちゃ", "ocha", "Green tea", "সবুজ চা"], ["こうちゃ", "koucha", "Black tea", "রং চা"], ["こーひー", "kohi", "Coffee", "কফি"], ["ぎゅうにゅう", "gyuunyuu", "Milk", "দুধ"], ["ぱん", "pan", "Bread", "পাউরুটি"], ["ごはん", "gohan", "Rice/Meal", "ভাত/খাবার"], ["にく", "niku", "Meat", "মাংস"], ["さかな", "sakana", "Fish", "মাছ"], ["やさい", "yasai", "Vegetable", "সবজি"], ["くだもの", "kudamono", "Fruit", "ফল"], ["りんご", "ringo", "Apple", "আপেল"], ["みかん", "mikan", "Orange", "কমলালেবু"], ["たまご", "tamago", "Egg", "ডিম"], ["しお", "shio", "Salt", "লবণ"], ["さとう", "satou", "Sugar", "চিনি"], ["しょうゆ", "shouyu", "Soy sauce", "সয়া সস"], ["あたま", "atama", "Head", "মাথা"], ["かお", "kao", "Face", "মুখমণ্ডল"], ["め", "me", "Eye", "চোখ"], ["みみ", "mimi", "Ear", "কান"], ["はな", "hana", "Nose", "নাক"], ["くち", "kuchi", "Mouth", "মুখ"], ["は", "ha", "Tooth", "দাঁত"], ["て", "te", "Hand", "হাত"], ["あし", "ashi", "Leg", "পা"], ["からだ", "karada", "Body", "শরীর"], ["くつ", "kutsu", "Shoes", "জুতো"], ["くつした", "kutsushita", "Socks", "মোজা"], ["ふく", "fuku", "Clothes", "কাপড়"], ["しゃつ", "shatsu", "Shirt", "শার্ট"]
+                ["ほん", "hon", "Book", "বই"], ["じしょ", "jisho", "Dictionary", "অভিধান"], ["ざっし", "zasshi", "Magazine", "ম্যাগাজিন"], ["しんぶん", "shinbun", "Newspaper", "সংবাদপত্র"], ["のうと", "nouto", "Notebook", "খাতা"], ["てちょう", "techou", "Pocket notebook", "ডায়েরি"], ["えんぴつ", "enpitsu", "Pencil", "পেন্সিল"], ["かばん", "kaban", "Bag", "ব্যাগ"], ["かさ", "kasa", "Umbrella", "ছাতা"], ["とけい", "tokei", "Clock", "ঘড়ি"], ["つくえ", "tsukue", "Desk", "ডেস্ক"], ["いす", "isu", "Chair", "চেয়ার"], ["まど", "mado", "Window", "জানালা"], ["どあ", "doa", "Door", "দরজা"], ["てれび", "terebi", "Television", "টেলিভিশন"], ["らじお", "rajio", "Radio", "রেডিও"], ["かめら", "kamera", "Camera", "ক্যামেরা"], ["ぱそこん", "pasokon", "PC", "পিসি/কম্পিউটার"], ["けいたい", "keitai", "Mobile", "মোবাইল ফোন"], ["みず", "mizu", "Water", "পানি"], ["おちゃ", "ocha", "Green tea", "সবুজ চা"], ["こうちゃ", "koucha", "Black tea", "রং চা"], ["こーひー", "kohi", "Coffee", "কফি"], ["ぎゅうにゅう", "gyuunyuu", "Milk", "দুধ"], ["ぱん", "pan", "Bread", "পাউরুটি"], ["ごはん", "gohan", "Rice/Meal", "ভাত/খাবার"], ["にく", "niku", "Meat", "মাংস"], ["さかな", "sakana", "Fish", "মাছ"], ["やさい", "yasai", "Vegetable", "সবজি"], ["くだもの", "kudamono", "Fruit", "ফল"], ["りんご", "ringo", "Apple", "আপেল"], ["みかん", "mikan", "Orange", "কমলালেবু"], ["たまご", "tamago", "Egg", "ডিম"], ["しお", "shio", "Salt", "লবণ"], ["さとう", "satou", "Sugar", "চিনি"], ["しょうゆ", "shouyu", "Soy sauce", "সয়া সস"], ["あたま", "atama", "Head", "মাথা"], ["かお", "kao", "Face", "মুখমণ্ডল"], ["め", "me", "Eye", "চোখ"], ["みみ", "mimi", "Ear", "কান"], ["はな", "hana", "Nose", "নাক"], ["くち", "kuchi", "Mouth", "মুখ"], ["は", "ha", "Tooth", "দাঁত"], ["て", "te", "Hand", "হাত"], ["あし", "ashi", "Leg", "পা"], ["からだ", "karada", "Body", "শরীর"], ["くつ", "kutsu", "Shoes", "জুতো"], ["くつした", "kutsushita", "Socks", "মোজা"], ["ふく", "fuku", "Clothes", "কাপড়"], ["しゃつ", "shatsu", "Shirt", "শার্ট"]
             ],
             "lesson5": [
-                ["いきます", "ikimasu", "To go", "যাওয়া"], ["きます", "kimasu", "To come", "আসা"], ["かえります", "kaerimasu", "To return", "ফিরে যাওয়া"], ["たべます", "tabemasu", "To eat", "খাওয়া"], ["のみます", "nomimasu", "To drink", "পান করা"], ["みます", "mimasu", "To see", "দেখা"], ["ききます", "kikimasu", "To listen", "শোনা"], ["よみます", "yomimasu", "To read", "পড়া"], ["かきます", "kakimasu", "To write", "লেখা"], ["かいます", "kaimasu", "To buy", "কেনা"], ["とります", "torimasu", "To take", "তোলা"], ["します", "shimasu", "To do", "করা"], ["あいます", "aimasu", "To meet", "দেখা করা"], ["わかります", "wakarimasu", "To understand", "বুঝতে পারা"], ["あります", "arimasu", "To exist (thing)", "থাকা (বস্তু)"], ["います", "imasu", "To exist (living)", "থাকা (প্রাণী)"], ["おきます", "okimasu", "To wake up", "ঘুম থেকে ওঠা"], ["ねます", "nemasu", "To sleep", "ঘুমানো"], ["はたらきます", "hatarakimasu", "To work", "কাজ করা"], ["やすみます", "yasumimasu", "To rest", "বিশ্রাম নেওয়া"], ["べんきょうします", "benkyou shimasu", "To study", "পড়াশোনা করা"], ["おしえます", "oshiemasu", "To teach", "শেখানো"], ["ならいます", "naraimasu", "To learn", "শেখা"], ["かします", "kashimasu", "To lend", "ধার দেওয়া"], ["かります", "karimasu", "To borrow", "ধার নেওয়া"], ["おおきい", "ookii", "Big", "বড়"], ["ちいさい", "chiisai", "Small", "ছোট"], ["あたらしい", "atarashii", "New", "নতুন"], ["ふるい", "furui", "Old", "পুরনো"], ["いい", "ii", "Good", "ভালো"], ["わるい", "warui", "Bad", "খারাপ"], ["あつい", "atsui", "Hot", "গরম"], ["さむい", "samui", "Cold (weather)", "ঠান্ডা"], ["つめたい", "tsumetai", "Cold (thing)", "ঠান্ডা (বস্তু)"], ["むずかしい", "muzukashii", "Difficult", "কঠিন"], ["やさしい", "yasashii", "Easy", "সহজ"], ["たかい", "takai", "High/Expensive", "দামি/উঁচু"], ["やすい", "yasui", "Cheap", "সস্তা"], ["ひくい", "hikui", "Low", "নিচু"], ["おもしろい", "omoshiroi", "Interesting", "মজার"], ["おいしい", "oishii", "Delicious", "সুস্বাদু"], ["いそがしい", "isogashii", "Busy", "ব্যস্ত"], ["たのしい", "tanoshii", "Fun", "আনন্দদায়ক"], ["しろい", "shiroi", "White", "সাদা"], ["くろい", "kuroi", "Black", "কালো"], ["あかい", "akai", "Red", "লাল"], ["あおい", "aoi", "Blue", "নীল"], ["きれいな", "kirei na", "Beautiful", "সুন্দর"], ["しずかな", "shizuka na", "Quiet", "শান্ত"], ["にぎやかな", "nigiyaka na", "Lively", "কোলাহলপূর্ণ"]
+                ["いきます", "ikimasu", "To go", "যাওয়া"], ["きます", "kimasu", "To come", "আসা"], ["かえります", "kaerimasu", "To return", "ফিরে যাওয়া"], ["たべます", "tabemasu", "To eat", "খাওয়া"], ["のみます", "nomimasu", "To drink", "পান করা"], ["みます", "mimasu", "To see", "দেখা"], ["ききます", "kikimasu", "To listen", "শোনা"], ["よみます", "yomimasu", "To read", "পড়া"], ["かきます", "kakimasu", "To write", "লেখা"], ["かいます", "kaimasu", "To buy", "কেনা"], ["とります", "torimasu", "To take", "তোলা"], ["します", "shimasu", "To do", "করা"], ["あいます", "aimasu", "To meet", "দেখা করা"], ["わかります", "wakarimasu", "To understand", "বুঝতে পারা"], ["あります", "arimasu", "To exist (thing)", "থাকা (বস্তু)"], ["います", "imasu", "To exist (living)", "থাকা (প্রাণী)"], ["おきます", "okimasu", "To wake up", "ঘুম থেকে ওঠা"], ["ねます", "nemasu", "To sleep", "ঘুমানো"], ["はたらきます", "hatarakimasu", "To work", "কাজ করা"], ["やすみます", "yasumimasu", "To rest", "বিশ্রাম নেওয়া"], ["べんきょうします", "benkyou shimasu", "To study", "পড়াশোনা করা"], ["おしえます", "oshiemasu", "To teach", "শেখানো"], ["ならいます", "naraimasu", "To learn", "শেখা"], ["かします", "kashimasu", "To lend", "ধার দেওয়া"], ["かります", "karimasu", "To borrow", "ধার নেওয়া"], ["おおきい", "ookii", "Big", "বড়"], ["ちいさい", "chiisai", "Small", "ছোট"], ["あたらしい", "atarashii", "New", "নতুন"], ["ふるい", "furui", "Old", "পুরনো"], ["いい", "ii", "Good", "ভালো"], ["わるい", "warui", "Bad", "খারাপ"], ["あつい", "atsui", "Hot", "গরম"], ["さむい", "samui", "Cold (weather)", "ঠান্ডা"], ["つめたい", "tsumetai", "Cold (thing)", "ঠান্ডা (বস্তু)"], ["むずかしい", "muzukashii", "Difficult", "কঠিন"], ["やさしい", "yasashii", "Easy", "সহজ"], ["たかい", "takai", "High/Expensive", "দামি/উঁচু"], ["やすい", "yasui", "Cheap", "সস্তা"], ["ひくい", "hikui", "Low", "নিচু"], ["おもしろい", "omoshiroi", "Interesting", "মজার"], ["おいしい", "oishii", "Delicious", "সুস্বাদু"], ["いそがしい", "isogashii", "Busy", "ব্যস্ত"], ["たのしい", "tanoshii", "Fun", "আনন্দদায়ক"], ["しろい", "shiroi", "White", "সাদা"], ["くろい", "kuroi", "Black", "কালো"], ["あかい", "akai", "Red", "লাল"], ["あおい", "aoi", "Blue", "নীল"], ["きれいな", "kirei na", "Beautiful", "সুন্দর"], ["しずかな", "shizuka na", "Quiet", "শান্ত"], ["にぎやかな", "nigiyaka na", "Lively", "কোলাহলপূর্ণ"]
             ],
-             "lesson6": [
-            ["はなします", "hanashimasu", "To speak/talk", "কথা বলা"], ["まちます", "machimasu", "To wait", "অপেক্ষা করা"], ["よびます", "yobimasu", "To call", "ডাকা"], ["うたいます", "utaimasu", "To sing", "গান গাওয়া"], ["つくります", "tsukurimasu", "To make", "তৈরি করা"], ["うります", "urimasu", "To sell", "বিক্রি করা"], ["あそびます", "asobimasu", "To play", "খেলা করা"], ["およぎます", "oyogimasu", "To swim", "সাঁতার কাটা"], ["すいます", "suimasu", "To smoke/inhale", "ধূমপান করা/নিঃশ্বাস নেওয়া"], ["きります", "kirimasu", "To cut", "কাটা"], ["おくります", "okurimasu", "To send", "পাঠানো"], ["あげます", "agemasu", "To give", "দেওয়া"], ["もらいます", "moraimasu", "To receive", "পাওয়া/গ্রহণ করা"], ["たちます", "tachimasu", "To stand", "দাঁড়ানো"], ["すわります", "suwarimasu", "To sit", "বসা"], ["つかいます", "tsukaimasu", "To use", "ব্যবহার করা"], ["てつだいます", "tetsudaimasu", "To help", "সাহায্য করা"], ["もちます", "mochimasu", "To hold/have", "ধরে রাখা/থাকা"], ["あけます", "akemasu", "To open", "খোলা"], ["しめます", "shimemasu", "To close", "বন্ধ করা"], ["つけます", "tsukemasu", "To turn on", "চালু করা (লাইট/ফ্যান)"], ["けします", "keshimasu", "To turn off/erase", "বন্ধ করা/মুছে ফেলা"], ["とめます", "tomemasu", "To stop", "থামানো"], ["みせます", "misemasu", "To show", "দেখানো"], ["はじめます", "hajimemasu", "To start", "শুরু করা"], ["おわります", "owarimasu", "To finish", "শেষ হওয়া/করা"], ["おもいます", "omoimasu", "To think", "মনে করা/চিন্তা করা"], ["いいます", "iimasu", "To say", "বলা"], ["かちます", "kachimasu", "To win", "জেতা"], ["まけます", "makemasu", "To lose", "হেরে যাওয়া"], ["しります", "shirimasu", "To know", "জানা"], ["すみます", "sumimasu", "To live/reside", "বাস করা"], ["おきます", "okimasu", "To put/place", "রাখা"], ["でかけます", "dekakemasu", "To go out", "বাইরে যাওয়া"], ["あびます", "abimasu", "To take a shower", "গোসল করা"], ["いれます", "iremasu", "To insert/put in", "ভেতরে রাখা/ঢোকানো"], ["だします", "dashimasu", "To take out/submit", "বের করা/জমা দেওয়া"], ["ぬぎます", "nugimasu", "To take off clothes", "কাপড় খোলা"], ["はきます", "hakimasu", "To wear shoes/pants", "জুতো/প্যান্ট পরা"], ["きます", "kimasu", "To wear shirt", "জামা পরা"], ["かぶります", "kaburimasu", "To wear hat", "টুপি পরা"], ["かけます", "kakemasu", "To wear glasses", "চশমা পরা"], ["うまれます", "umaremasu", "To be born", "জন্মগ্রহণ করা"], ["わたります", "watarimasu", "To cross", "পার হওয়া (রাস্তা)"], ["まがります", "magarimasu", "To turn", "মোড় নেওয়া/ঘোরা"], ["あるきます", "arukimasu", "To walk", "হাঁটা"], ["はしります", "hashirimasu", "To run", "দৌড়ানো"], ["のります", "norimasu", "To ride/board", "উঠা/চড়া (গাড়িতে)"], ["おります", "orimasu", "To get off", "নামা (গাড়ি থেকে)"], ["しんぱいします", "shinpaishimasu", "To worry", "চিন্তা করা/উদ্বিগ্ন হওয়া"]
-        ],
-        "lesson7": [
-            ["ながい", "nagai", "Long", "লম্বা"], ["みじかい", "mijikai", "Short", "খাটো/ছোট"], ["おもい", "omoi", "Heavy", "ভারী"], ["かるい", "karui", "Light", "হালকা"], ["ひろい", "hiroi", "Wide/Spacious", "প্রশস্ত/বড়"], ["せまい", "semai", "Narrow/Cramped", "সংকীর্ণ/ছোট"], ["とおり", "toori", "Street/Avenue", "রাস্তা"], ["とおい", "tooi", "Far", "দূরে"], ["はやい", "hayai", "Fast/Early", "দ্রুত/তাড়াতাড়ি"], ["おそい", "osoi", "Slow/Late", "ধীর/দেরি"], ["あかるい", "akarui", "Bright", "উজ্জ্বল/আলো"], ["くらい", "kurai", "Dark", "অন্ধকার"], ["あぶない", "abunai", "Dangerous", "বিপজ্জামানক"], ["つまらない", "tsumaranai", "Boring", "বিরক্তিকর"], ["わかい", "wakai", "Young", "তরুণ/যুবক"], ["すきな", "suki na", "Like/Favorite", "পছন্দনীয়"], ["きらいな", "kirai na", "Dislike/Hate", "অপছন্দনীয়"], ["じょうずな", "jouzu na", "Skillful/Good at", "দক্ষ"], ["へたな", "heta na", "Unskillful/Bad at", "অদক্ষ"], ["ひまな", "hima na", "Free time", "অবসর"], ["べんりな", "benri na", "Convenient", "সুবিধাজনক"], ["ゆうめいな", "yuumei na", "Famous", "বিখ্যাত"], ["げんきな", "genki na", "Healthy/Energetic", "সুস্থ/প্রাণবন্ত"], ["いろいろな", "iroiro na", "Various", "বিভিন্ন"], ["たいへんな", "taihen na", "Tough/Hard", "কঠিন/কষ্টকর"], ["だいじょうぶな", "daijoubu na", "Okay/Fine", "ঠিক আছে/সমস্যা নেই"], ["いつも", "itsumo", "Always", "সবসময়"], ["ときどき", "tokidoki", "Sometimes", "মাঝে মাঝে"], ["よく", "yoku", "Often/Well", "প্রায়ই/ভালোভাবে"], ["だいたい", "daitai", "Mostly/Roughly", "মোটামুটি/প্রায়"], ["たくさん", "takusan", "Many/A lot", "অনেক/প্রচুর"], ["すこし", "sukoshi", "A little", "অল্প/কিছুটা"], ["ぜんぜん", "zenzen", "Not at all", "একদমই না"], ["あまり", "amari", "Not very much", "খুব একটা না"], ["とても", "totemo", "Very", "খুব"], ["もっと", "motto", "More", "আরও"], ["ゆっくり", "yukkuri", "Slowly", "ধীরে ধীরে"], ["すぐに", "sugu ni", "Immediately", "অবিলম্বে/তক্ষণাৎ"], ["もう", "mou", "Already", "ইতিমধ্যে"], ["まだ", "mada", "Not yet", "এখনো না"], ["これから", "korekara", "From now on", "এখন থেকে"], ["いっしょに", "issho ni", "Together", "একসাথে"], ["ひとりで", "hitori de", "Alone", "একা একা"], ["はじめて", "hajimete", "For the first time", "প্রথমবার"], ["また", "mata", "Again", "আবার"], ["ちょうど", "choudo", "Exactly", "ঠিক/বরাবর"], ["まっすぐ", "massugu", "Straight", "সোজা"], ["だから", "dakara", "So/Therefore", "তাই/অতএব"], ["しかし", "shikashi", "However", "তবে/কিন্তু"], ["たいてい", "taitei", "Usually", "সাধারণত"]
-        ],
-        "lesson8": [
-            ["おんがく", "ongaku", "Music", "গান/সঙ্গীত"], ["うた", "uta", "Song", "গান"], ["えいが", "eiga", "Movie", "সিনেমা/চলচ্চিত্র"], ["え", "e", "Picture/Drawing", "ছবি/চিত্রকর্ম"], ["しゃしん", "shashin", "Photo", "ছবি/ফটোগ্রাফ"], ["すぽーつ", "supotsu", "Sports", "খেলাধুলা"], ["てにす", "tenisu", "Tennis", "টেনিস"], ["さっかー", "sakka", "Soccer/Football", "ফুটবল"], ["ぎたー", "gita", "Guitar", "গিটার"], ["ぴあの", "piano", "Piano", "পিয়ানো"], ["げーむ", "gemu", "Game", "খেলা/গেম"], ["りょこう", "ryokou", "Travel/Trip", "ভ্রমণ"], ["かいもの", "kaimono", "Shopping", "কেনাকাটা"], ["さんぽ", "sanpo", "Walk/Stroll", "হাঁটাহাঁটি"], ["べんきょう", "benkyou", "Study", "পড়াশোনা"], ["しごと", "shigoto", "Work/Job", "কাজ/চাকরি"], ["てがみ", "tegami", "Letter", "চিঠি"], ["めーる", "meru", "Email", "ইমেইল"], ["でんわ", "denwa", "Phone call", "ফোন"], ["はがき", "hagaki", "Postcard", "পোস্টকার্ড"], ["きって", "kitte", "Stamp", "ডাকটিকিট"], ["きっぷ", "kippu", "Ticket", "টিকিট"], ["にっき", "nikki", "Diary", "ডায়েরি"], ["にほんご", "nihongo", "Japanese language", "জাপানি ভাষা"], ["えいご", "eigo", "English language", "ইংরেজি ভাষা"], ["じゅぎょう", "jugyou", "Class/Lesson", "ক্লাস/পাঠ"], ["てすと", "tesuto", "Test/Exam", "পরীক্ষা"], ["しゅくだい", "shukudai", "Homework", "হোমওয়ার্ক"], ["そうじ", "souji", "Cleaning", "পরিষ্কার করা"], ["せんたく", "sentaku", "Laundry", "কাপড় ধোয়া"], ["りょうり", "ryouri", "Cooking", "রান্না"], ["ぱーてぃー", "pati", "Party", "পার্টি"], ["きゃんぷ", "kyanpu", "Camp", "ক্যাম্প"], ["だんす", "dansu", "Dance", "নাচ/নৃত্য"], ["どらいぶ", "doraibu", "Drive", "গাড়ি চালানো"], ["てれびげーむ", "terebigemu", "Video game", "ভিডিও গেম"], ["まんが", "manga", "Comic/Manga", "কমিকস/ম্যাঙ্গা"], ["あにめ", "anime", "Anime", "অ্যানিমে"], ["にゅーす", "nyusu", "News", "খবর"], ["らじお", "rajio", "Radio", "রেডিও"], ["ぴくにっく", "pikunikku", "Picnic", "পিকনিক"], ["おまつり", "omatsuri", "Festival", "উৎসব"], ["はなび", "hanabi", "Fireworks", "আতশবাজি"], ["おみやげ", "omiyage", "Souvenir", "স্মারক/উপহার"], ["ぷれぜんと", "purezento", "Gift/Present", "উপহার"], ["おかね", "okane", "Money", "টাকা/অর্থ"], ["さいふ", "saifu", "Wallet", "মানিব্যাগ"], ["ぱすぽーと", "pasupoto", "Passport", "পাসপোর্ট"], ["かぎ", "kagi", "Key", "চাবি"], ["すけじゅーる", "sukejuru", "Schedule", "সময়সূচী"]
-        ],
-        "lesson9": [
-            ["だいどころ", "daidokoro", "Kitchen", "রান্নাঘর"], ["といれ", "toire", "Toilet", "টয়লেট"], ["おふろ", "ofuro", "Bath", "গোসলখানা"], ["げんかん", "genkan", "Entrance", "প্রবেশদ্বার"], ["かいだん", "kaidan", "Stairs", "সিঁড়ি"], ["えれべーたー", "erebeta", "Elevator", "লিফট"], ["えすかれーたー", "esukareta", "Escalator", "চলন্ত সিঁড়ি"], ["にわ", "niwa", "Garden", "বাগান"], ["べっど", "beddo", "Bed", "বিছানা"], ["てーぶる", "teburu", "Table", "টেবিল"], ["れいぞうこ", "reizouko", "Refrigerator", "ফ্রিজ"], ["えあこん", "eakon", "Air conditioner", "এসি"], ["すとーぶ", "sutobu", "Heater/Stove", "হিটার/চুলা"], ["かがみ", "kagami", "Mirror", "আয়না"], ["せんたくき", "sentakuki", "Washing machine", "ওয়াশিং মেশিন"], ["そうじき", "soujiki", "Vacuum cleaner", "ভ্যাকুয়াম ক্লিনার"], ["はこ", "hako", "Box", "বাক্স"], ["ぽけっと", "poketto", "Pocket", "পকেট"], ["ぼたん", "botan", "Button", "বোতাম"], ["めがね", "megane", "Glasses", "চশমা"], ["ぼうし", "boushi", "Hat", "টুপি"], ["こーと", "koto", "Coat", "কোট"], ["ずぼん", "zubon", "Trousers/Pants", "প্যান্ট"], ["すかーと", "sukato", "Skirt", "স্কার্ট"], ["ねくたい", "nekutai", "Necktie", "টাই"], ["じゅーす", "ju-su", "Juice", "জুস"], ["おさけ", "osake", "Alcohol/Sake", "مদ/সাকে"], ["びーる", "bi-ru", "Beer", "বিয়ার"], ["わいん", "wain", "Wine", "ওয়াইন"], ["べんとう", "bentou", "Lunch box", "টিফিন বক্স/বেনতো"], ["おかし", "okashi", "Sweets/Snacks", "মিষ্টি/স্ন্যাক্স"], ["あいすくりーむ", "aisukuri-mu", "Ice cream", "আইসক্রিম"], ["かれー", "kare-", "Curry", "কারি/তরকারি"], ["すーぷ", "su-pu", "Soup", "সুপ"], ["さらだ", "sarada", "Salad", "সালাদ"], ["ぱすた", "pasuta", "Pasta", "পাস্তা"], ["とりにく", "toriniku", "Chicken meat", "মুরগির মাংস"], ["ぎゅうにく", "gyuuniku", "Beef", "গরুর মাংস"], ["ぶたにく", "butaniku", "Pork", "শূকরের মাংস"], ["むぎ", "mugi", "Wheat/Barley", "গম/যব"], ["こめ", "kome", "Uncooked rice", "চাল"], ["こしょう", "koshou", "Pepper", "গোলমরিচ"], ["ばたー", "bata-", "Butter", "মাখন"], ["みそ", "miso", "Miso", "মিসো (জাপানি খাবার)"], ["けちゃっぷ", "ketchappu", "Ketchup", "কেচাপ"], ["そーす", "so-su", "Sauce", "সস"], ["はし", "hashi", "Chopsticks", "চপস্টিক"], ["すぷーん", "supu-n", "Spoon", "চামচ"], ["ほーく", "ho-ku", "Fork", "কাঁটাচামচ"], ["ないふ", "naifu", "Knife", "ছুরি"]
-        ],
-        "lesson10": [
-            ["くうこう", "kuukou", "Airport", "বিমানবন্দর"], ["みなと", "minato", "Port", "বন্দর"], ["びじゅつかん", "bijutsukan", "Art museum", "শিল্পকলা জাদুঘর"], ["はくぶつかん", "hakubutsukan", "Museum", "জাদুঘর"], ["どうぶつえん", "doubutsuen", "Zoo", "চিড়িয়াখানা"], ["しょくぶつえん", "shokubutsuen", "Botanical garden", "উদ্ভিদ উদ্যান"], ["たいいくかん", "taiikukan", "Gymnasium", "জিমনেসিয়াম"], ["えいがかん", "eigakan", "Movie theater", "সিনেমা হল"], ["たいしかん", "taishikan", "Embassy", "দূতাবাস"], ["しやくしょ", "shiyakusho", "City hall", "নগর ভবন/পৌরসভা"], ["こうじょう", "koujou", "Factory", "কারখানা"], ["だいがく", "daigaku", "University", "বিশ্ববিদ্যালয়"], ["きょうしつ", "kyoushitsu", "Classroom", "শ্রেণীকক্ষ"], ["しょくどう", "shokudou", "Cafeteria", "ক্যাফেটেরিয়া/খাবার ঘর"], ["うけつけ", "uketsuke", "Reception", "অভ্যর্থনা কক্ষ"], ["じむしょ", "jimusho", "Office", "অফিস/কার্যালয়"], ["かいぎしつ", "kaigishitsu", "Meeting room", "মিটিং রুম"], ["ろうか", "rouka", "Corridor/Hallway", "বারান্দা/করিডোর"], ["おてあらい", "otearai", "Restroom", "শৌচাগার"], ["いけ", "ike", "Pond", "পুকুর"], ["はたけ", "hatake", "Field/Farm", "ক্ষেত/খামার"], ["むら", "mura", "Village", "গ্রাম"], ["くに", "kuni", "Country", "দেশ"], ["せかい", "sekai", "World", "পৃথিবী/বিশ্ব"], ["ちず", "chizu", "Map", "মানচিত্র"], ["がいこく", "gaikoku", "Foreign country", "বিদেশ"], ["がいこくじん", "gaikokujin", "Foreigner", "বিদেশী নাগরিক"], ["にほん", "nihon", "Japan", "জাপান"], ["ことば", "kotoba", "Word/Language", "শব্দ/ভাষা"], ["じ", "ji", "Letter/Character", "অক্ষর/বর্ণ"], ["いみ", "imi", "Meaning", "অর্থ"], ["もんだい", "mondai", "Problem/Question", "সমস্যা/প্রশ্ন"], ["こたえ", "kotae", "Answer", "উত্তর"], ["ばんごう", "bangou", "Number", "নম্বর/সংখ্যা"], ["まる", "maru", "Circle/Correct", "বৃত্ত/সঠিক"], ["ばつ", "batsu", "Cross/Incorrect", "ক্রস/ভুল"], ["れい", "rei", "Example", "উদাহরণ"], ["てん", "ten", "Point/Score", "পয়েন্ট/নম্বর"], ["かみ", "kami", "Paper", "কাগজ"], ["ごみ", "gomi", "Trash/Garbage", "ময়লা/আবর্জনা"], ["じしん", "jishin", "Earthquake", "ভূমিকম্প"], ["かじ", "kaji", "Fire (accident)", "আগুন/অग्नিকাণ্ড"], ["じこ", "jiko", "Accident", "দুর্ঘটনা"], ["びょうき", "byouki", "Illness/Sickness", "অসুখ/অসুস্থতা"], ["くすり", "kusuri", "Medicine", "ওষুধ"], ["ほけんしょう", "hokenshou", "Insurance card", "বীমা কার্ড"], ["ねつ", "netsu", "Fever", "জ্বর"], ["かぜ", "kaze", "Cold (illness)", "সর্দি/ঠান্ডা"], ["よてい", "yotei", "Plan/Schedule", "পরিকল্পনা"], ["やくそく", "yakusoku", "Promise/Appointment", "প্রতিশ্রুতি/অ্যাপয়েন্টমেন্ট"]
-        ]
-       
+            "lesson6": [
+                ["はなします", "hanashimasu", "To speak/talk", "কথা বলা"], ["まちます", "machimasu", "To wait", "অপেক্ষা করা"], ["よびます", "yobimasu", "To call", "ডাকা"], ["うたいます", "utaimasu", "To sing", "গান গাওয়া"], ["つくります", "tsukurimasu", "To make", "তৈরি করা"], ["うります", "urimasu", "To sell", "বিক্রি করা"], ["あそびます", "asobimasu", "To play", "খেলা করা"], ["およぎます", "oyogimasu", "To swim", "সাঁতার কাটা"], ["すいます", "suimasu", "To smoke/inhale", "ধূমপান করা/নিঃশ্বাস নেওয়া"], ["きります", "kirimasu", "To cut", "কাটা"], ["おくります", "okurimasu", "To send", "পাঠানো"], ["あげます", "agemasu", "To give", "দেওয়া"], ["もらいます", "moraimasu", "To receive", "পাওয়া/গ্রহণ করা"], ["たちます", "tachimasu", "To stand", "দাঁড়ানো"], ["すわります", "suwarimasu", "To sit", "বসা"], ["つかいます", "tsukaimasu", "To use", "ব্যবহার করা"], ["てつだいます", "tetsudaimasu", "To help", "সাহায্য করা"], ["もちます", "mochimasu", "To hold/have", "ধরে রাখা/থাকা"], ["あけます", "akemasu", "To open", "খোলা"], ["しめます", "shimemasu", "To close", "বন্ধ করা"], ["つけます", "tsukemasu", "To turn on", "চালু করা (লাইট/ফ্যান)"], ["けします", "keshimasu", "To turn off/erase", "বন্ধ করা/মুছে ফেলা"], ["とめます", "tomemasu", "To stop", "থামানো"], ["みせます", "misemasu", "To show", "দেখানো"], ["はじめます", "hajimemasu", "To start", "শুরু করা"], ["おわります", "owarimasu", "To finish", "শেষ হওয়া/করা"], ["おもいます", "omoimasu", "To think", "মনে করা/চিন্তা করা"], ["いいます", "iimasu", "To say", "বলা"], ["かちます", "kachimasu", "To win", "জেতা"], ["まけます", "makemasu", "To lose", "হেরে যাওয়া"], ["しります", "shirimasu", "To know", "জানা"], ["すみます", "sumimasu", "To live/reside", "বাস করা"], ["おきます", "okimasu", "To put/place", "রাখা"], ["でかけます", "dekakemasu", "To go out", "বাইরে যাওয়া"], ["あびます", "abimasu", "To take a shower", "গোসল করা"], ["いれます", "iremasu", "To insert/put in", "ভেতরে রাখা/ঢোকানো"], ["だします", "dashimasu", "To take out/submit", "বের করা/জমা দেওয়া"], ["ぬぎます", "nugimasu", "To take off clothes", "কাপড় খোলা"], ["はきます", "hakimasu", "To wear shoes/pants", "জুতো/প্যান্ট পরা"], ["きます", "kimasu", "To wear shirt", "জামা পরা"], ["かぶります", "kaburimasu", "To wear hat", "টুপি পরা"], ["かけます", "kakemasu", "To wear glasses", "চশমা পরা"], ["うまれます", "umaremasu", "To be born", "জন্মগ্রহণ করা"], ["わたります", "watarimasu", "To cross", "পার হওয়া (রাস্তা)"], ["まがります", "magarimasu", "To turn", "মোড় নেওয়া/ঘোরা"], ["あるきます", "arukimasu", "To walk", "হাঁটা"], ["はしります", "hashirimasu", "To run", "দৌড়ানো"], ["のります", "norimasu", "To ride/board", "উঠা/চড়া (গাড়িতে)"], ["おります", "orimasu", "To get off", "নামা (গাড়ি থেকে)"], ["しんぱいします", "shinpaishimasu", "To worry", "চিন্তা করা/উদ্বিগ্ন হওয়া"]
+            ],
+            "lesson7": [
+                ["ながい", "nagai", "Long", "লম্বা"], ["みじかい", "mijikai", "Short", "খাটো/ছোট"], ["おもい", "omoi", "Heavy", "ভারী"], ["かるい", "karui", "Light", "হালকা"], ["ひろい", "hiroi", "Wide/Spacious", "প্রশস্ত/বড়"], ["せまい", "semai", "Narrow/Cramped", "সংকীর্ণ/ছোট"], ["とおり", "toori", "Street/Avenue", "রাস্তা"], ["とおい", "tooi", "Far", "দূরে"], ["はやい", "hayai", "Fast/Early", "দ্রুত/তাড়াতাড়ি"], ["おそい", "osoi", "Slow/Late", "ধীর/দেরি"], ["あかるい", "akarui", "Bright", "উজ্জ্বল/আলো"], ["くらい", "kurai", "Dark", "অন্ধকার"], ["あぶない", "abunai", "Dangerous", "বিপজ্জামানক"], ["つまらない", "tsumaranai", "Boring", "বিরক্তিকর"], ["わかい", "wakai", "Young", "তরুণ/যুবক"], ["すきな", "suki na", "Like/Favorite", "পছন্দনীয়"], ["きらいな", "kirai na", "Dislike/Hate", "অপছন্দনীয়"], ["じょうずな", "jouzu na", "Skillful/Good at", "দক্ষ"], ["へたな", "heta na", "Unskillful/Bad at", "অদক্ষ"], ["ひまな", "hima na", "Free time", "অবসর"], ["べんりな", "benri na", "Convenient", "সুবিধাজনক"], ["ゆうめいな", "yuumei na", "Famous", "বিখ্যাত"], ["げんきな", "genki na", "Healthy/Energetic", "সুস্থ/প্রাণবন্ত"], ["いろいろな", "iroiro na", "Various", "বিভিন্ন"], ["たいへんな", "taihen na", "Tough/Hard", "কঠিন/কষ্টকর"], ["だいじょうぶな", "daijoubu na", "Okay/Fine", "ঠিক আছে/সমস্যা নেই"], ["いつも", "itsumo", "Always", "সবসময়"], ["ときどき", "tokidoki", "Sometimes", "মাঝে মাঝে"], ["よく", "yoku", "Often/Well", "প্রায়ই/ভালোভাবে"], ["だいたい", "daitai", "Mostly/Roughly", "মোটামুটি/প্রায়"], ["たくさん", "takusan", "Many/A lot", "অনেক/প্রচুর"], ["すこし", "sukoshi", "A little", "অল্প/কিছুটা"], ["ぜんぜん", "zenzen", "Not at all", "একদমই না"], ["あまり", "amari", "Not very much", "খুব একটা না"], ["とても", "totemo", "Very", "খুব"], ["もっと", "motto", "More", "আরও"], ["ゆっくり", "yukkuri", "Slowly", "ধীরে ধীরে"], ["すぐに", "sugu ni", "Immediately", "অবিলম্বে/তক্ষণাৎ"], ["もう", "mou", "Already", "ইতিমধ্যে"], ["まだ", "mada", "Not yet", "এখনো না"], ["これから", "korekara", "From now on", "এখন থেকে"], ["いっしょに", "issho ni", "Together", "একসাথে"], ["ひとりで", "hitori de", "Alone", "একা একা"], ["はじめて", "hajimete", "For the first time", "প্রথমবার"], ["また", "mata", "Again", "আবার"], ["ちょうど", "choudo", "Exactly", "ঠিক/বরাবর"], ["まっすぐ", "massugu", "Straight", "সোজা"], ["だから", "dakara", "So/Therefore", "তাই/অতএব"], ["しかし", "shikashi", "However", "তবে/কিন্তু"], ["たいてい", "taitei", "Usually", "সাধারণত"]
+            ],
+            "lesson8": [
+                ["おんがく", "ongaku", "Music", "গান/সঙ্গীত"], ["うた", "uta", "Song", "গান"], ["えいが", "eiga", "Movie", "সিনেমা/চলচ্চিত্র"], ["え", "e", "Picture/Drawing", "ছবি/চিত্রকর্ম"], ["しゃしん", "shashin", "Photo", "ছবি/ফটোগ্রাফ"], ["すぽーつ", "supotsu", "Sports", "খেলাধুলা"], ["てにす", "tenisu", "Tennis", "টেনিস"], ["さっかー", "sakka", "Soccer/Football", "ফুটবল"], ["ぎたー", "gita", "Guitar", "গিটার"], ["ぴあの", "piano", "Piano", "পিয়ানো"], ["げーむ", "gemu", "Game", "খেলা/গেম"], ["りょこう", "ryokou", "Travel/Trip", "ভ্রমণ"], ["かいもの", "kaimono", "Shopping", "কেনাকাটা"], ["さんぽ", "sanpo", "Walk/Stroll", "হাঁটাহাঁটি"], ["べんきょう", "benkyou", "Study", "পড়াশোনা"], ["しごと", "shigoto", "Work/Job", "কাজ/চাকরি"], ["てがみ", "tegami", "Letter", "চিঠি"], ["めーる", "meru", "Email", "ইমেইল"], ["でんわ", "denwa", "Phone call", "ফোন"], ["はがき", "hagaki", "Postcard", "পোস্টকার্ড"], ["きって", "kitte", "Stamp", "ডাকটিকিট"], ["きっぷ", "kippu", "Ticket", "টিকিট"], ["にっき", "nikki", "Diary", "ডায়েরি"], ["にほんご", "nihongo", "Japanese language", "জাপানি ভাষা"], ["えいご", "eigo", "English language", "ইংরেজি ভাষা"], ["じゅぎょう", "jugyou", "Class/Lesson", "ক্লাস/পাঠ"], ["てすと", "tesuto", "Test/Exam", "পরীক্ষা"], ["しゅくだい", "shukudai", "Homework", "হোমওয়ার্ক"], ["そうじ", "souji", "Cleaning", "পরিষ্কার করা"], ["せんたく", "sentaku", "Laundry", "কাপড় ধোয়া"], ["りょうり", "ryouri", "Cooking", "রান্না"], ["ぱーてぃー", "pati", "Party", "পার্টি"], ["きゃんぷ", "kyanpu", "Camp", "ক্যাম্প"], ["だんす", "dansu", "Dance", "নাচ/নৃত্য"], ["どらいぶ", "doraibu", "Drive", "গাড়ি চালানো"], ["てれびげーむ", "terebigemu", "Video game", "ভিডিও গেম"], ["まんが", "manga", "Comic/Manga", "কমিকস/ম্যাঙ্গা"], ["あにめ", "anime", "Anime", "অ্যানিমে"], ["にゅーす", "nyusu", "News", "খবর"], ["らじお", "rajio", "Radio", "রেডিও"], ["ぴくにっく", "pikunikku", "Picnic", "পিকনিক"], ["おまつり", "omatsuri", "Festival", "উৎসব"], ["はなび", "hanabi", "Fireworks", "আতশবাজি"], ["おみやげ", "omiyage", "Souvenir", "স্মারক/উপহার"], ["ぷれぜんと", "purezento", "Gift/Present", "উপহার"], ["おかね", "okane", "Money", "টাকা/অর্থ"], ["さいふ", "saifu", "Wallet", "মানিব্যাগ"], ["ぱすぽーと", "pasupoto", "Passport", "পাসপোর্ট"], ["かぎ", "kagi", "Key", "চাবি"], ["すけじゅーる", "sukejuru", "Schedule", "সময়সূচী"]
+            ],
+            "lesson9": [
+                ["だいどころ", "daidokoro", "Kitchen", "রান্নাঘর"], ["といれ", "toire", "Toilet", "টয়লেট"], ["おふろ", "ofuro", "Bath", "গোসলখানা"], ["げんかん", "genkan", "Entrance", "প্রবেশদ্বার"], ["かいだん", "kaidan", "Stairs", "সিঁড়ি"], ["えれべーたー", "erebeta", "Elevator", "লিফট"], ["えすかれーたー", "esukareta", "Escalator", "চলন্ত সিঁড়ি"], ["にわ", "niwa", "Garden", "বাগান"], ["べっど", "beddo", "Bed", "বিছানা"], ["てーぶる", "teburu", "Table", "টেবিল"], ["れいぞうこ", "reizouko", "Refrigerator", "ফ্রিজ"], ["えあこん", "eakon", "Air conditioner", "এসি"], ["すとーぶ", "sutobu", "Heater/Stove", "হিটার/চুলা"], ["かがみ", "kagami", "Mirror", "আয়না"], ["せんたくき", "sentakuki", "Washing machine", "ওয়াশিং মেশিন"], ["そうじき", "soujiki", "Vacuum cleaner", "ভ্যাকুয়াম ক্লিনার"], ["はこ", "hako", "Box", "বাক্স"], ["ぽけっと", "poketto", "Pocket", "পকেট"], ["ぼたん", "botan", "Button", "বোতাম"], ["めがね", "megane", "Glasses", "চশমা"], ["ぼうし", "boushi", "Hat", "টুপি"], ["こーと", "koto", "Coat", "কোট"], ["ずぼん", "zubon", "Trousers/Pants", "প্যান্ট"], ["すかーと", "sukato", "Skirt", "স্কার্ট"], ["ねくたい", "nekutai", "Necktie", "টাই"], ["じゅーす", "ju-su", "Juice", "জুস"], ["おさけ", "osake", "Alcohol/Sake", "মদ/সাকে"], ["びーる", "bi-ru", "Beer", "বিয়ার"], ["わいん", "wain", "Wine", "ওয়াইন"], ["べんとう", "bentou", "Lunch box", "টিফিন বক্স/বেনতো"], ["おかし", "okashi", "Sweets/Snacks", "মিষ্টি/স্ন্যাক্স"], ["あいすくりーむ", "aisukuri-mu", "Ice cream", "আইসক্রিম"], ["かれー", "kare-", "Curry", "কারি/তরকারি"], ["すーぷ", "su-pu", "Soup", "সুপ"], ["さらだ", "sarada", "Salad", "সালাদ"], ["ぱすた", "pasuta", "Pasta", "পাস্তা"], ["とりにく", "toriniku", "Chicken meat", "মুরগির মাংস"], ["ぎゅうにく", "gyuuniku", "Beef", "গরুর মাংস"], ["ぶたにく", "butaniku", "Pork", "শূকরের মাংস"], ["むぎ", "mugi", "Wheat/Barley", "গম/যব"], ["こめ", "kome", "Uncooked rice", "চাল"], ["こしょう", "koshou", "Pepper", "গোলমরিচ"], ["ばたー", "bata-", "Butter", "মাখন"], ["みそ", "miso", "Miso", "মিসো (জাপানি খাবার)"], ["けちゃっぷ", "ketchappu", "Ketchup", "কেচাপ"], ["そーす", "so-su", "Sauce", "সস"], ["はし", "hashi", "Chopsticks", "চপস্টিক"], ["すぷーん", "supu-n", "Spoon", "চামচ"], ["ほーく", "ho-ku", "Fork", "কাঁটাচামচ"], ["ないふ", "naifu", "Knife", "ছুরি"]
+            ],
+            "lesson10": [
+                ["くうこう", "kuukou", "Airport", "বিমানবন্দর"], ["みなと", "minato", "Port", "বন্দর"], ["びじゅつかん", "bijutsukan", "Art museum", "শিল্পকলা জাদুঘর"], ["はくぶつかん", "hakubutsukan", "Museum", "জাদুঘর"], ["どうぶつえん", "doubutsuen", "Zoo", "চিড়িয়াখানা"], ["しょくぶつえん", "shokubutsuen", "Botanical garden", "উদ্ভিদ উদ্যান"], ["たいいくかん", "taiikukan", "Gymnasium", "জিমনেসিয়াম"], ["えいがかん", "eigakan", "Movie theater", "সিনেমা হল"], ["たいしかん", "taishikan", "Embassy", "দূতাবাস"], ["しやくしょ", "shiyakusho", "City hall", "নগর ভবন/পৌরসভা"], ["こうじょう", "koujou", "Factory", "কারখানা"], ["だいがく", "daigaku", "University", "বিশ্ববিদ্যালয়"], ["きょうしつ", "kyoushitsu", "Classroom", "শ্রেণীকক্ষ"], ["しょくどう", "shokudou", "Cafeteria", "ক্যাফেটেরিয়া/খাবার ঘর"], ["うけつけ", "uketsuke", "Reception", "অভ্যর্থনা কক্ষ"], ["じむしょ", "jimusho", "Office", "অফিস/কার্যালয়"], ["かいぎしつ", "kaigishitsu", "Meeting room", "মিটিং রুম"], ["ろうか", "rouka", "Corridor/Hallway", "বারান্দা/করিডোর"], ["おてあらい", "otearai", "Restroom", "শৌচাগার"], ["いけ", "ike", "Pond", "পুকুর"], ["はたけ", "hatake", "Field/Farm", "ক্ষেত/খামার"], ["むら", "mura", "Village", "গ্রাম"], ["くに", "kuni", "Country", "দেশ"], ["せかい", "sekai", "World", "পৃথিবী/বিশ্ব"], ["ちず", "chizu", "Map", "মানচিত্র"], ["がいこく", "gaikoku", "Foreign country", "বিদেশ"], ["がいこくじん", "gaikokujin", "Foreigner", "বিদেশী নাগরিক"], ["にほん", "nihon", "Japan", "জাপান"], ["ことば", "kotoba", "Word/Language", "শব্দ/ভাষা"], ["じ", "ji", "Letter/Character", "অক্ষর/বর্ণ"], ["いみ", "imi", "Meaning", "অর্থ"], ["もんだい", "mondai", "Problem/Question", "সমস্যা/প্রশ্ন"], ["こたえ", "kotae", "Answer", "উত্তর"], ["ばんごう", "bangou", "Number", "নম্বর/সংখ্যা"], ["まる", "maru", "Circle/Correct", "বৃত্ত/সঠিক"], ["ばつ", "batsu", "Cross/Incorrect", "ক্রস/ভুল"], ["れい", "rei", "Example", "উদাহরণ"], ["てん", "ten", "Point/Score", "পয়েন্ট/নম্বর"], ["かみ", "kami", "Paper", "কাগজ"], ["ごみ", "gomi", "Trash/Garbage", "ময়লা/আবর্জনা"], ["じしん", "jishin", "Earthquake", "ভূমিকম্প"], ["かじ", "kaji", "Fire (accident)", "আগুন/অग्नিকাণ্ড"], ["じこ", "jiko", "Accident", "দুর্ঘটনা"], ["びょうき", "byouki", "Illness/Sickness", "অসুখ/অসুস্থতা"], ["くすり", "kusuri", "Medicine", "ওষুধ"], ["ほけんしょう", "hokenshou", "Insurance card", "বীমা কার্ড"], ["ねつ", "netsu", "Fever", "জ্বর"], ["かぜ", "kaze", "Cold (illness)", "সর্দি/ঠান্ডা"], ["よてい", "yotei", "Plan/Schedule", "পরিকল্পনা"], ["やくそく", "yakusoku", "Promise/Appointment", "প্রতিশ্রুতি/অ্যাপয়েন্টমেন্ট"]
+            ],
+            
+            // Grammar Data (Exactly 50 items each)
+            "grammar1": [
+                ["わたし ___ がくせいです。", "watashi ___ gakusei desu.", "は", "wa"], ["りんご ___ たべます。", "ringo ___ tabemasu.", "を", "o"],
+                ["がっこう ___ いきます。", "gakkou ___ ikimasu.", "へ", "he"], ["３じ ___ おきます。", "san ji ___ okimasu.", "に", "ni"],
+                ["えんぴつ ___ かきます。", "enpitsu ___ kakimasu.", "で", "de"], ["くるま ___ きます。", "kuruma ___ kimasu.", "で", "de"],
+                ["ともだち ___ あいます。", "tomodachi ___ aimasu.", "に", "ni"], ["ちち ___ ははです。", "chichi ___ haha desu.", "と", "to"],
+                ["わたし ___ いくらですか。", "watashi ___ ikura desu ka.", "も", "mo"], ["うち ___ がっこうまで...", "uchi ___ gakkou made...", "から", "kara"],
+                ["あした ___ やすみです。", "ashita ___ yasumi desu.", "は", "wa"], ["パン ___ たべます。", "pan ___ tabemasu.", "を", "o"],
+                ["へやに つくえ ___ あります。", "heya ni tsukue ___ arimasu.", "が", "ga"], ["いぬ ___ います。", "inu ___ imasu.", "が", "ga"],
+                ["スーパー ___ かいものします。", "suupaa ___ kaimonoshimasu.", "で", "de"], ["にちようび ___ ひまです。", "nichiyoubi ___ hima desu.", "は", "wa"],
+                ["きのう ___ やすみでした。", "kinou ___ yasumi deshita.", "は", "wa"], ["ぎゅうにゅう ___ のみます。", "gyuunyuu ___ nomimasu.", "を", "o"],
+                ["テレビ ___ みます。", "terebi ___ mimasu.", "を", "o"], ["６じ ___ ねます。", "roku ji ___ nemasu.", "に", "ni"],
+                ["げつようび ___ かようびです。", "getsuyoubi ___ kayoubi desu.", "から", "kara"], ["ぎんこう ___ いきます。", "ginkou ___ ikimasu.", "へ", "he"],
+                ["タクシー ___ かえります。", "takushii ___ kaerimasu.", "で", "de"], ["せんせい ___ ききます。", "sensei ___ kikimasu.", "に", "ni"],
+                ["いぬ ___ ねこが います。", "inu ___ neko ga imasu.", "と", "to"], ["これ ___ ください。", "kore ___ kudasai.", "を", "o"],
+                ["あれ ___ わたしのほんです。", "are ___ watashi no hon desu.", "は", "wa"], ["にほんご ___ べんきょうします。", "nihongo ___ benkyoushimasu.", "を", "o"],
+                ["カメラ ___ しゃしんをとります。", "kamera ___ shashin o torimasu.", "で", "de"], ["としょかん ___ ほんをよみます。", "toshokan ___ hon o yomimasu.", "で", "de"],
+                ["あに ___ おとうとがいます。", "ani ___ otouto ga imasu.", "と", "to"], ["９じ ___ ５じまでです。", "ku ji ___ go ji made desu.", "から", "kara"],
+                ["えき ___ ちかいです。", "eki ___ chikai desu.", "は", "wa"], ["さかな ___ すきです。", "sakana ___ suki desu.", "が", "ga"],
+                ["スポーツ ___ きらいです。", "supootsu ___ kirai desu.", "が", "ga"], ["えいご ___ わかります。", "eigo ___ wakarimasu.", "が", "ga"],
+                ["お金 ___ あります。", "okane ___ arimasu.", "が", "ga"], ["こども ___ います。", "kodomo ___ imasu.", "が", "ga"],
+                ["ここ ___ かいてください。", "koko ___ kaite kudasai.", "に", "ni"], ["バス ___ のります。", "basu ___ norimasu.", "に", "ni"],
+                ["でんしゃ ___ おります。", "densha ___ orimasu.", "を", "o"], ["みち ___ わたります。", "michi ___ watarimasu.", "を", "o"],
+                ["こうさてん ___ まがります。", "kousaten ___ magarimasu.", "を", "o"], ["８じ ___ はたらきます。", "hachi ji ___ hatarakimasu.", "から", "kara"],
+                ["だれ ___ いますか。", "dare ___ imasu ka.", "が", "ga"], ["なに ___ ありますか。", "nani ___ arimasu ka.", "が", "ga"],
+                ["つくえの うえ ___ あります。", "tsukue no ue ___ arimasu.", "に", "ni"], ["かばんの なか ___ あります。", "kaban no naka ___ arimasu.", "に", "ni"],
+                ["いすの した ___ います。", "isu no shita ___ imasu.", "に", "ni"], ["あそこ ___ あります。", "asoko ___ arimasu.", "に", "ni"]
+            ],
+            "grammar2": [
+                ["まいにち ほんを ___ 。", "mainichi hon o ___ .", "よみます", "yomimasu"], ["きのう えいがを ___ 。", "kinou eiga o ___ .", "みました", "mimashita"],
+                ["あした がっこうへ ___ 。", "ashita gakkou e ___ .", "いきません", "ikimasen"], ["きのう べんきょう ___ 。", "kinou benkyou ___ .", "しませんでした", "shimasen deshita"],
+                ["いっしょに コーヒーを ___ 。", "issho ni koohii o ___ .", "のみましょう", "nomimashou"], ["にほんへ ___ たいです。", "nihon e ___ tai desu.", "いき", "iki"],
+                ["ごはんを ___ てください。", "gohan o ___ te kudasai.", "たべ", "tabe"], ["ここで しゃしんを ___ ないでください。", "koko de shashin o ___ naide kudasai.", "とら", "tora"],
+                ["えきまで ___ ください。", "eki made ___ kudasai.", "いって", "itte"], ["きょうは 早く ___ 。", "kyou wa hayaku ___ .", "かえります", "kaerimasu"],
+                ["おんがくを ___ ながら...", "ongaku o ___ nagara...", "きき", "kiki"], ["テレビを ___ 。", "terebi o ___ .", "みます", "mimasu"],
+                ["きのうは ___ 。", "kinou wa ___ .", "やすみました", "yasumimashita"], ["てがみを ___ 。", "tegami o ___ .", "かきます", "kakimasu"],
+                ["しゅくだいを ___ 。", "shukudai o ___ .", "します", "shimasu"], ["あしたは ___ 。", "ashita wa ___ .", "はたらきません", "hatarakimasen"],
+                ["きのうは ___ 。", "kinou wa ___ .", "きませんでした", "kimasen deshita"], ["カメラを ___ 。", "kamera o ___ .", "かいました", "kaimashita"],
+                ["しゃしんを ___ ましょうか。", "shashin o ___ mashou ka.", "とり", "tori"], ["ドアを ___ ましょうか。", "doa o ___ mashou ka.", "あけ", "ake"],
+                ["ほんを ___ たいです。", "hon o ___ tai desu.", "よみ", "yomi"], ["みずを ___ たいです。", "mizu o ___ tai desu.", "のみ", "nomi"],
+                ["ともだちに ___ たいです。", "tomodachi ni ___ tai desu.", "あい", "ai"], ["ちょっと ___ てください。", "chotto ___ te kudasai.", "まっ", "ma"],
+                ["なまえを ___ てください。", "namae o ___ te kudasai.", "かい", "kai"], ["ほんを ___ てください。", "hon o ___ te kudasai.", "よん", "yon"],
+                ["えいごで ___ てください。", "eigo de ___ te kudasai.", "はなし", "hanashi"], ["ドアを ___ てください。", "doa o ___ te kudasai.", "あけ", "ake"],
+                ["でんきを ___ てください。", "denki o ___ te kudasai.", "けし", "keshi"], ["ここに ___ てください。", "koko ni ___ te kudasai.", "き", "ki"],
+                ["タバコを ___ ないでください。", "tabako o ___ naide kudasai.", "すわ", "suwa"], ["ここに ___ ないでください。", "koko ni ___ naide kudasai.", "はいら", "haira"],
+                ["パスポートを ___ なければなりません。", "pasupooto o ___ nakereba narimasen.", "みせ", "mise"], ["くすりを ___ なければなりません。", "kusuri o ___ nakereba narimasen.", "のま", "noma"],
+                ["あした ___ なくてもいいです。", "ashita ___ nakutemo ii desu.", "こ", "ko"], ["べんきょう ___ なくてもいいです。", "benkyou ___ nakutemo ii desu.", "し", "shi"],
+                ["ギターを ___ ことができます。", "gitaa o ___ koto ga dekimasu.", "ひく", "hiku"], ["にほんごを ___ ことができます。", "nihongo o ___ koto ga dekimasu.", "はなす", "hanasu"],
+                ["うみを ___ ことができます。", "umi o ___ koto ga dekimasu.", "みる", "miru"], ["かんじを ___ ことができます。", "kanji o ___ koto ga dekimasu.", "かく", "kaku"],
+                ["すしを ___ ことがあります。", "sushi o ___ koto ga arimasu.", "たべた", "tabeta"], ["にほんへ ___ ことがあります。", "nihon e ___ koto ga arimasu.", "いった", "itta"],
+                ["うまに ___ ことがあります。", "uma ni ___ koto ga arimasu.", "のった", "notta"], ["きのうは ___ たり、ほんをよんだりしました。", "kinou wa ___ tari, hon o yondari shimashita.", "かいものし", "kaimonoshi"],
+                ["やすみは ___ たり、おんがくをきいたりします。", "yasumi wa ___ tari, ongaku o kiitari shimasu.", "やすん", "yasun"], ["あしたは ___ たり、えいがをみたりします。", "ashita wa ___ tari, eiga o mitari shimasu.", "あそん", "ason"],
+                ["もう レポートを ___ か。", "mou repooto o ___ ka.", "かきました", "kakimashita"], ["まだ ___ 。", "mada ___ .", "かいていません", "kaiteimasen"],
+                ["いま コーヒーを ___ います。", "ima koohii o ___ imasu.", "のんで", "nonde"], ["いま テレビを ___ います。", "ima terebi o ___ imasu.", "みて", "mite"]
+            ],
+            "grammar3": [
+                ["この りんごは ___ です。", "kono ringo wa ___ desu.", "おいしい", "oishii"], ["きのうは とても ___ です。", "kinou wa totemo ___ desu.", "さむかった", "samukatta"],
+                ["あの ひとは ___ ですね。", "ano hito wa ___ desu ne.", "きれい", "kirei"], ["にほんごは ___ ないです。", "nihongo wa ___ nai desu.", "むずかしく", "muzukashiku"],
+                ["わたしの くるまは ___ ありません。", "watashi no kuruma wa ___ arimasen.", "あたらしく", "atarashiku"], ["きょうは ___ ありません。", "kyou wa ___ arimasen.", "ひまじゃ", "hima ja"],
+                ["えんぴつが ３___ あります。", "enpitsu ga san ___ arimasu.", "ぼん", "bon"], ["かみ が ２___ あります。", "kami ga ni ___ arimasu.", "まい", "mai"],
+                ["いぬが １___ います。", "inu ga i ___ imasu.", "ぴき", "piki"], ["くるまの なか___ います。", "kuruma no naka ___ imasu.", "に", "ni"],
+                ["つくえの うえに ほんが ___ 。", "tsukue no ue ni hon ga ___ .", "あります", "arimasu"], ["あそこに せんせいが ___ 。", "asoko ni sensei ga ___ .", "います", "imasu"],
+                ["とうきょうは ___ まちです。", "toukyou wa ___ machi desu.", "おおきい", "ookii"], ["これは ___ かばんですか。", "kore wa ___ kaban desu ka.", "だれの", "dare no"],
+                ["それは ___ ほんです。", "sore wa ___ hon desu.", "わたしの", "watashi no"], ["この かばんは ___ です。", "kono kaban wa ___ desu.", "おおきい", "ookii"],
+                ["あの へやは ___ です。", "ano heya wa ___ desu.", "せまい", "semai"], ["日本の くるまは ___ です。", "nihon no kuruma wa ___ desu.", "いい", "ii"],
+                ["さくらだいがくは ___ ありません。", "sakura daigaku wa ___ arimasen.", "ゆうめいじゃ", "yuumei ja"], ["この とけいは ___ です。", "kono tokei wa ___ desu.", "たかい", "takai"],
+                ["この カメラは ___ ないです。", "kono kamera wa ___ nai desu.", "やすく", "yasuku"], ["きのうの パーティーは ___ です。", "kinou no paatii wa ___ desu.", "たのしかった", "tanoshikatta"],
+                ["きのうの てんきは ___ ないです。", "kinou no tenki wa ___ nai desu.", "よく", "yoku"], ["せんしゅうは ___ ありませんでした。", "senshuu wa ___ arimasen deshita.", "ひまじゃ", "hima ja"],
+                ["きのうは ___ です。", "kinou wa ___ desu.", "あめでした", "ame deshita"], ["あの レストランは ___ ないです。", "ano resutoran wa ___ nai desu.", "おいしく", "oishiku"],
+                ["リンゴが ４___ あります。", "ringo ga yon ___ arimasu.", "つ", "tsu"], ["みかんが ８___ あります。", "mikan ga yat ___ arimasu.", "つ", "tsu"],
+                ["シャツが １___ あります。", "shatsu ga ichi ___ arimasu.", "まい", "mai"], ["くるまが ２___ あります。", "kuruma ga ni ___ arimasu.", "だい", "dai"],
+                ["ねこが ３___ います。", "neko ga san ___ imasu.", "びき", "biki"], ["ひとが ５___ います。", "hito ga go ___ imasu.", "にん", "nin"],
+                ["きょうしつに だれ___ いません。", "kyoushitsu ni dare ___ imasen.", "も", "mo"], ["なにか たべもの___ ありますか。", "nanika tabemono ___ arimasu ka.", "が", "ga"],
+                ["ここは ___ ないです。", "koko wa ___ nai desu.", "しずかじゃ", "shizuka ja"], ["わたしは バス___ いきます。", "watashi wa basu ___ ikimasu.", "で", "de"],
+                ["これは ___ です。", "kore wa ___ desu.", "なん", "nan"], ["それは ___ つくえですか。", "sore wa ___ tsukue desu ka.", "なんの", "nan no"],
+                ["あの ひとは ___ ですか。", "ano hito wa ___ desu ka.", "だれ", "dare"], ["かぎは ___ ありますか。", "kagi wa ___ arimasu ka.", "どこに", "doko ni"],
+                ["やすみは ___ ですか。", "yasumi wa ___ desu ka.", "いつ", "itsu"], ["これと それと ___ が いいですか。", "kore to sore to ___ ga ii desu ka.", "どちら", "dochira"],
+                ["りんごの ほうが みかん___ すきです。", "ringo no hou ga mikan ___ suki desu.", "より", "yori"], ["くだものの なかで りんごが ___ すきです。", "kudamono no naka de ringo ga ___ suki desu.", "いちばん", "ichiban"],
+                ["きのうは ___ です。", "kinou wa ___ desu.", "いそがしかった", "isogashikatta"], ["テストは ___ です。", "tesuto wa ___ desu.", "かんたんでした", "kantan deshita"],
+                ["ほんの ___ に あります。", "hon no ___ ni arimasu.", "した", "shita"], ["きょうは とても ___ です。", "kyou wa totemo ___ desu.", "あつい", "atsui"],
+                ["わたしは さかな___ すきです。", "watashi wa sakana ___ suki desu.", "が", "ga"], ["あしたは ___ ましょう。", "ashita wa ___ mashou.", "やすみ", "yasumi"]
+            ]
         };
 
         const quizDatabase = {};
 
-        // Question Generator
         for (let lesson in rawData) {
-            quizDatabase[lesson] = [];
-            const items = rawData[lesson];
+            let items = rawData[lesson];
+            let processedItems = [];
+            
             for (let i = 0; i < items.length; i++) {
                 const q = items[i][0];
                 const r = items[i][1];
-                const correctStr = `${items[i][2]} (${items[i][3]})`;
+                let correctStr = "";
+                
+                if(lesson.includes('grammar')) {
+                    correctStr = `${items[i][2]}`; 
+                } else {
+                    correctStr = `${items[i][2]} (${items[i][3]})`;
+                }
                 
                 let wrongOptions = [];
                 while (wrongOptions.length < 3) {
                     let randIdx = Math.floor(Math.random() * items.length);
                     if (randIdx !== i) {
-                        let wrongStr = `${items[randIdx][2]} (${items[randIdx][3]})`;
-                        if (!wrongOptions.includes(wrongStr)) {
+                        let wrongStr = lesson.includes('grammar') ? items[randIdx][2] : `${items[randIdx][2]} (${items[randIdx][3]})`;
+                        if (!wrongOptions.includes(wrongStr) && wrongStr !== correctStr) {
                             wrongOptions.push(wrongStr);
                         }
                     }
                 }
                 
                 let allOptions = [correctStr, ...wrongOptions];
-                // Shuffle Array
-                allOptions.sort(() => Math.random() - 0.5);
+                allOptions.sort(() => Math.random() - 0.5); 
                 let correctIdx = allOptions.indexOf(correctStr);
                 
-                quizDatabase[lesson].push({ q: q, r: r, a: allOptions, c: correctIdx });
+                processedItems.push({ q: q, r: r, a: allOptions, c: correctIdx });
             }
+
+            quizDatabase[lesson] = processedItems;
         }
 
         let currentLesson = '';
@@ -191,7 +296,15 @@
             currentLesson = lessonKey;
             currentQuestionIdx = 0;
             score = 0;
-            selectedQuestions = quizDatabase[lessonKey];
+            selectedQuestions = [...quizDatabase[lessonKey]];
+            selectedQuestions.sort(() => Math.random() - 0.5);
+
+            if(lessonKey.includes('grammar')) {
+                document.getElementById('question-title').innerText = "Choose the correct grammar/particle:";
+            } else {
+                document.getElementById('question-title').innerText = "What is the meaning of this word?";
+            }
+
             showScreen('quiz-screen');
             loadQuestion();
         }
@@ -200,56 +313,74 @@
             document.getElementById('next-btn').style.display = 'none';
             const total = selectedQuestions.length;
             document.getElementById('question-counter').innerText = `Question ${currentQuestionIdx + 1}/${total}`;
-            document.getElementById('progress-bar').style.width = `${(currentQuestionIdx / total) * 100}%`;
+            document.getElementById('progress-bar').style.width = `${((currentQuestionIdx) / total) * 100}%`;
 
-            const q = selectedQuestions[currentQuestionIdx];
-            document.getElementById('japanese-word').innerText = q.q;
-            document.getElementById('romaji-word').innerText = q.r;
+            const currentQ = selectedQuestions[currentQuestionIdx];
+            document.getElementById('japanese-word').innerText = currentQ.q;
+            document.getElementById('romaji-word').innerText = currentQ.r;
 
-            const optsList = document.getElementById('options-list');
-            optsList.innerHTML = '';
+            const optionsList = document.getElementById('options-list');
+            optionsList.innerHTML = '';
 
-            q.a.forEach((opt, idx) => {
+            currentQ.a.forEach((option, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'option-item';
-                btn.innerText = opt;
-                btn.onclick = () => selectOption(idx, btn);
-                optsList.appendChild(btn);
+                btn.innerText = option;
+                btn.onclick = () => selectOption(index, currentQ.c, btn);
+                optionsList.appendChild(btn);
             });
         }
 
-        function selectOption(idx, btn) {
-            const q = selectedQuestions[currentQuestionIdx];
-            const allBtns = document.querySelectorAll('.option-item');
-            allBtns.forEach(b => b.disabled = true);
+        function selectOption(selectedIndex, correctIndex, btn) {
+            const optionsList = document.getElementById('options-list');
+            const buttons = optionsList.getElementsByClassName('option-item');
 
-            if (idx === q.c) {
-                btn.classList.add('correct');
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+                buttons[i].style.pointerEvents = 'none';
+                if (i === correctIndex) {
+                    buttons[i].classList.add('correct');
+                }
+            }
+
+            if (selectedIndex === correctIndex) {
                 score++;
             } else {
                 btn.classList.add('wrong');
-                allBtns[q.c].classList.add('correct');
             }
-            document.getElementById('next-btn').style.display = 'block';
+
+            document.getElementById('next-btn').style.display = 'inline-block';
+            document.getElementById('progress-bar').style.width = `${((currentQuestionIdx + 1) / selectedQuestions.length) * 100}%`;
         }
 
         function nextQuestion() {
             currentQuestionIdx++;
-            if (currentQuestionIdx < selectedQuestions.length) loadQuestion();
-            else showResult();
+            if (currentQuestionIdx < selectedQuestions.length) {
+                loadQuestion();
+            } else {
+                showResultScreen();
+            }
         }
 
-        function showResult() {
+        function showResultScreen() {
             showScreen('result-screen');
-            const total = selectedQuestions.length;
-            document.getElementById('score-large').innerText = `${score}/${total}`;
-            let fb = score >= 40 ? "অসাধারণ! আপনার ভোকাবুলারি অনেক ভালো।" : "Good effort! আরেকটু প্র্যাকটিস করুন।";
-            document.getElementById('result-text').innerText = fb;
-            document.getElementById('progress-bar').style.width = '100%';
+            document.getElementById('score-large').innerText = `${score} / ${selectedQuestions.length}`;
+            const percentage = (score / selectedQuestions.length) * 100;
+            let msg = percentage >= 90 ? "Excellent! You are a master!" : percentage >= 70 ? "Great Job! Keep it up!" : "Good Try! Keep Practicing!";
+            document.getElementById('result-text').innerText = msg;
         }
 
-        function restartLesson() { startQuiz(currentLesson); }
-        function goHome() { showScreen('home-screen'); }
+        function goHome() {
+            showScreen('home-screen');
+        }
+
+        function restartLesson() {
+            startQuiz(currentLesson);
+        }
     </script>
+    <!-- Footer Section -->
+<footer style="text-align: center; padding: 20px; color: #64748b; font-size: 14px; border-top: 1px solid #e2e8f0; margin-top: 40px; background-color: #ffffff;">
+    Copyright &copy; 2026 | sahabalshoaib
+</footer>
 </body>
 </html>
