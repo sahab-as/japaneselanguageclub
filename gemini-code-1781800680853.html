@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learning Club - N5 Quiz</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; }
+        header { background-color: var(--card-bg); border-bottom: 1px solid var(--border); padding: 20px; text-align: center; }
+        header h1 { color: var(--primary-color); font-size: 28px; }
+        header p { color: var(--text-muted); font-size: 14px; margin-top: 5px; }
+        main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { background-color: var(--card-bg); border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); width: 100%; max-width: 600px; padding: 30px; }
+        .screen { display: none; }
+        .screen.active { display: block; }
+        .lesson-grid { display: grid; gap: 15px; margin-top: 25px; }
+        .lesson-btn { background-color: var(--card-bg); border: 2px solid var(--border); border-radius: 12px; padding: 18px; font-size: 18px; font-weight: 600; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; }
+        .lesson-btn:hover { border-color: var(--primary-color); background-color: #f5f3ff; }
+        .lesson-btn span { font-size: 14px; background-color: #e0e7ff; color: var(--primary-color); padding: 4px 10px; border-radius: 20px; }
+        .quiz-header { display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .back-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 600; }
+        .progress-bar-container { background-color: var(--border); border-radius: 10px; height: 8px; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { background-color: var(--primary-color); height: 100%; width: 0%; transition: width 0.3s ease; }
+        .question-box { text-align: center; margin-bottom: 30px; }
+        .question-title { font-size: 14px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; }
+        .japanese-word { font-size: 42px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; }
+        .romaji-word { font-size: 18px; color: var(--text-muted); font-style: italic; margin-bottom: 15px; }
+        .options-list { display: grid; gap: 12px; margin-bottom: 25px; }
+        .option-item { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 15px; font-size: 16px; font-weight: 500; cursor: pointer; text-align: left; }
+        .option-item:hover:not([disabled]) { background-color: #f8fafc; border-color: var(--text-muted); }
+        .option-item.correct { background-color: #d1fae5 !important; border-color: var(--success) !important; color: #065f46 !important; }
+        .option-item.wrong { background-color: #fee2e2 !important; border-color: var(--danger) !important; color: #991b1b !important; }
+        .action-container { display: flex; justify-content: flex-end; }
+        .next-btn { background-color: var(--primary-color); color: white; border: none; border-radius: 10px; padding: 12px 25px; font-size: 16px; font-weight: 600; cursor: pointer; display: none; }
+        .result-box { text-align: center; padding: 20px 0; }
+        .score-large { font-size: 48px; font-weight: 800; color: var(--primary-color); margin-bottom: 10px; }
+        .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        .primary-btn { background-color: var(--primary-color); color: white; border: none; border-radius: 10px; padding: 12px 25px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Japanese Language Learning Club</h1> 
+        <h4>This site created by sahabalshoaib</h4>
+        <p>JLPT N5 Vocabulary Training quiz</p>
+    </header>
+    <main>
+        <div class="container">
+            <div id="home-screen" class="screen active">
+                <h2>Choose a Vocabulary Lesson</h2> 
+                <div class="lesson-grid">
+                    <button class="lesson-btn" onclick="startQuiz('lesson1')">Lesson 1: Greetings & People <span>50 Words</span></button>
+                    <button class="lesson-btn" onclick="startQuiz('lesson2')">Lesson 2: Time & Numbers <span>50 Words</span></button>
+                    <button class="lesson-btn" onclick="startQuiz('lesson3')">Lesson 3: Places & Directions <span>50 Words</span></button>
+                    <button class="lesson-btn" onclick="startQuiz('lesson4')">Lesson 4: Objects, Food & Body <span>50 Words</span></button>
+                    <button class="lesson-btn" onclick="startQuiz('lesson5')">Lesson 5: Verbs & Adjectives <span>50 Words</span></button>
+                </div>
+            </div>
+            <div id="quiz-screen" class="screen">
+                <div class="quiz-header">
+                    <button class="back-btn" onclick="goHome()">← Leave Quiz</button>
+                    <span id="question-counter" style="font-weight: 600; color: var(--text-muted);"></span>
+                </div>
+                <div class="progress-bar-container"><div id="progress-bar" class="progress-bar"></div></div>
+                <div class="question-box">
+                    <div class="question-title">What is the meaning of this word?</div>
+                    <div id="japanese-word" class="japanese-word"></div>
+                    <div id="romaji-word" class="romaji-word"></div>
+                </div>
+                <div id="options-list" class="options-list"></div>
+                <div class="action-container"><button id="next-btn" class="next-btn" onclick="nextQuestion()">Next Question →</button></div>
+            </div>
+            <div id="result-screen" class="screen">
+                <div class="result-box">
+                    <div style="font-size: 60px;">🎉</div>
+                    <div id="score-large" class="score-large"></div>
+                    <div id="result-text" style="font-size: 18px; color: var(--text-main); margin-bottom: 30px;"></div>
+                    <div class="btn-group">
+                        <button class="primary-btn" onclick="goHome()">Back to Lessons</button>
+                        <button class="primary-btn" style="background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color);" onclick="restartLesson()">Retry Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        const rawData = {
+            "lesson1": [["ありがとう", "arigatou", "Thank you", "ধন্যবাদ"], ["こんにちは", "konnichiwa", "Hello", "শুভ অপরাহ্ন/হ্যালো"]],
+            "lesson2": [["いち", "ichi", "One", "এক"], ["に", "ni", "Two", "দুই"]],
+            "lesson3": [["ここ", "koko", "Here", "এখানে"], ["そこ", "soko", "There", "সেখানে"]],
+            "lesson4": [["ほん", "hon", "Book", "বই"], ["じしょ", "jisho", "Dictionary", "অভিধান"]],
+            "lesson5": [["いきます", "ikimasu", "To go", "যাওয়া"], ["きます", "kimasu", "To come", "আসা"]]
+        };
+        const quizDatabase = {};
+        for (let lesson in rawData) {
+            quizDatabase[lesson] = [];
+            const items = rawData[lesson];
+            for (let i = 0; i < items.length; i++) {
+                const q = items[i][0], r = items[i][1], correctStr = `${items[i][2]} (${items[i][3]})`;
+                let allOptions = [correctStr];
+                quizDatabase[lesson].push({ q: q, r: r, a: allOptions, c: 0 });
+            }
+        }
+        let currentLesson = '', currentQuestionIdx = 0, score = 0, selectedQuestions = [];
+        function showScreen(screenId) { document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active')); document.getElementById(screenId).classList.add('active'); }
+        function startQuiz(lessonKey) { currentLesson = lessonKey; currentQuestionIdx = 0; score = 0; selectedQuestions = quizDatabase[lessonKey]; showScreen('quiz-screen'); loadQuestion(); }
+        function loadQuestion() {
+            document.getElementById('next-btn').style.display = 'none';
+            const q = selectedQuestions[currentQuestionIdx];
+            document.getElementById('japanese-word').innerText = q.q;
+            document.getElementById('romaji-word').innerText = q.r;
+            const optsList = document.getElementById('options-list'); optsList.innerHTML = '';
+            q.a.forEach((opt, idx) => { const btn = document.createElement('button'); btn.className = 'option-item'; btn.innerText = opt; btn.onclick = () => selectOption(idx, btn); optsList.appendChild(btn); });
+        }
+        function selectOption(idx, btn) { btn.classList.add('correct'); score++; document.getElementById('next-btn').style.display = 'block'; }
+        function nextQuestion() { currentQuestionIdx++; if (currentQuestionIdx < selectedQuestions.length) loadQuestion(); else showResult(); }
+        function showResult() { showScreen('result-screen'); document.getElementById('score-large').innerText = `${score}/${selectedQuestions.length}`; }
+        function restartLesson() { startQuiz(currentLesson); }
+        function goHome() { showScreen('home-screen'); }
+    </script>
+</body>
+</html>
