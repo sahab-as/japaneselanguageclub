@@ -35,7 +35,10 @@
         .question-box { text-align: center; margin-bottom: 30px; }
         .question-title { font-size: 14px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; }
         .japanese-word { font-size: 42px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; }
+        
+        /* New Romaji style - ইংরেজি উচ্চারণ */
         .romaji-word { font-size: 18px; color: var(--text-muted); font-style: italic; margin-bottom: 15px; }
+
         .options-list { display: grid; gap: 12px; margin-bottom: 25px; }
         .option-item { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 15px; font-size: 16px; font-weight: 500; cursor: pointer; text-align: left; }
         .option-item:hover:not([disabled]) { background-color: #f8fafc; border-color: var(--text-muted); }
@@ -50,11 +53,13 @@
     </style>
 </head>
 <body>
+
     <header>
-        <h1>Japanese Language Learning Club</h1> 
-        <h4>This site created by sahabalshoaib</h4>
-        <p>JLPT N5 Vocabulary Training quiz</p>
+        <h1> Japanese Language Learning Club</h1> 
+      <h4> This site created by sahabalshoaib </h4>
+        <p>JLPT N5 Vocabulary Training quiz </p>
     </header>
+
     <main>
         <div class="container">
             <div id="home-screen" class="screen active">
@@ -67,6 +72,7 @@
                     <button class="lesson-btn" onclick="startQuiz('lesson5')">Lesson 5: Verbs & Adjectives <span>50 Words</span></button>
                 </div>
             </div>
+
             <div id="quiz-screen" class="screen">
                 <div class="quiz-header">
                     <button class="back-btn" onclick="goHome()">← Leave Quiz</button>
@@ -75,12 +81,15 @@
                 <div class="progress-bar-container"><div id="progress-bar" class="progress-bar"></div></div>
                 <div class="question-box">
                     <div class="question-title">What is the meaning of this word?</div>
+                    <!-- জাপানিজ লেখা -->
                     <div id="japanese-word" class="japanese-word"></div>
+                    <!-- ইংরেজি উচ্চারণ (Romaji) -->
                     <div id="romaji-word" class="romaji-word"></div>
                 </div>
                 <div id="options-list" class="options-list"></div>
                 <div class="action-container"><button id="next-btn" class="next-btn" onclick="nextQuestion()">Next Question →</button></div>
             </div>
+
             <div id="result-screen" class="screen">
                 <div class="result-box">
                     <div style="font-size: 60px;">🎉</div>
@@ -94,38 +103,129 @@
             </div>
         </div>
     </main>
+
     <script>
+        // ২৫০ টি শব্দের পূর্ণাঙ্গ ডাটাবেজ
         const rawData = {
-            "lesson1": [["ありがとう", "arigatou", "Thank you", "ধন্যবাদ"], ["こんにちは", "konnichiwa", "Hello", "শুভ অপরাহ্ন/হ্যালো"]],
-            "lesson2": [["いち", "ichi", "One", "এক"], ["に", "ni", "Two", "দুই"]],
-            "lesson3": [["ここ", "koko", "Here", "এখানে"], ["そこ", "soko", "There", "সেখানে"]],
-            "lesson4": [["ほん", "hon", "Book", "বই"], ["じしょ", "jisho", "Dictionary", "অভিধান"]],
-            "lesson5": [["いきます", "ikimasu", "To go", "যাওয়া"], ["きます", "kimasu", "To come", "আসা"]]
+            "lesson1": [
+                ["ありがとう", "arigatou", "Thank you", "ধন্যবাদ"], ["こんにちは", "konnichiwa", "Hello", "শুভ অপরাহ্ন/হ্যালো"], ["おはよう", "ohayou", "Good morning", "শুভ সকাল"], ["さようなら", "sayounara", "Goodbye", "বিদায়"], ["すみません", "sumimasen", "Excuse me/Sorry", "মাফ করবেন"], ["ごめんなさい", "gomen nasai", "I'm sorry", "আমি দুঃখিত"], ["はい", "hai", "Yes", "হ্যাঁ"], ["いいえ", "iie", "No", "না"], ["わたし", "watashi", "I/Me", "আমি"], ["あなた", "anata", "You", "আপনি/তুমি"], ["かれ", "kare", "He", "সে (পুরুষ)"], ["かのじょ", "kanojo", "She", "সে (মহিলা)"], ["ひと", "hito", "Person", "মানুষ"], ["おとこ", "otoko", "Man", "পুরুষ"], ["おんな", "onna", "Woman", "মহিলা"], ["おとこのこ", "otokonoko", "Boy", "বালক"], ["おんなのこ", "onnanoko", "Girl", "বালিকা"], ["こども", "kodomo", "Child", "শিশু"], ["おとな", "otona", "Adult", "প্রাপ্তবয়স্ক"], ["ともだち", "tomodachi", "Friend", "বন্ধু"], ["かぞく", "kazoku", "Family", "পরিবার"], ["ちち", "chichi", "My father", "আমার বাবা"], ["はは", "haha", "My mother", "আমার মা"], ["おとうさん", "otousan", "Father", "বাবা"], ["おかあさん", "okaasan", "Mother", "মা"], ["あに", "ani", "Older brother", "আমার বড় ভাই"], ["あね", "ane", "Older sister", "আমার বড় বোন"], ["おにいさん", "oniisan", "Older brother", "বড় ভাই"], ["おねえさん", "oneesan", "Older sister", "বড় বোন"], ["おとうと", "otouto", "Younger brother", "ছোট ভাই"], ["いもうと", "imouto", "Younger sister", "ছোট বোন"], ["そふ", "sofu", "Grandfather", "দাদা/নানা"], ["そぼ", "sobo", "Grandmother", "দাদি/নানি"], ["せんせい", "sensei", "Teacher", "শিক্ষক"], ["がくせい", "gakusei", "Student", "ছাত্র/ছাত্রী"], ["いしゃ", "isha", "Doctor", "ডাক্তার"], ["けいさつかん", "keisatsukan", "Police", "পুলিশ"], ["なまえ", "namae", "Name", "নাম"], ["だれ", "dare", "Who", "কে"], ["みんな", "minna", "Everyone", "সবাই"], ["みなさん", "minasan", "Everyone", "আপনারা সবাই"], ["おなまえ", "onamae", "Name", "নাম"], ["こちら", "kochira", "This person", "এই দিকে"], ["あちら", "achira", "That person", "ওই দিকে"], ["どちら", "dochira", "Which person", "কোন দিকে"], ["どうぞ", "douzo", "Please", "দয়া করে"], ["どうも", "doumo", "Thanks", "ধন্যবাদ"], ["いただきます", "itadakimasu", "Let's eat", "খাবার শুরুর আগে"], ["ごちそうさま", "gochisousama", "Thanks for meal", "খাবার শেষে"], ["ただいま", "tadaima", "I'm back", "আমি ফিরেছি"]
+            ],
+            "lesson2": [
+                ["いち", "ichi", "One", "এক"], ["に", "ni", "Two", "দুই"], ["さん", "san", "Three", "তিন"], ["よん", "yon", "Four", "চার"], ["ご", "go", "Five", "পাঁচ"], ["ろく", "roku", "Six", "ছয়"], ["なな", "nana", "Seven", "সাত"], ["はち", "hachi", "Eight", "আট"], ["きゅう", "kyuu", "Nine", "নয়"], ["じゅう", "juu", "Ten", "দশ"], ["ひゃく", "hyaku", "Hundred", "একশো"], ["せん", "sen", "Thousand", "এক হাজার"], ["まん", "man", "Ten thousand", "দশ হাজার"], ["じ", "ji", "O'clock", "টা (সময়)"], ["ふん", "fun", "Minute", "মিনিট"], ["はん", "han", "Half", "অর্ধেক"], ["いま", "ima", "Now", "এখন"], ["きょう", "kyou", "Today", "আজ"], ["あした", "ashita", "Tomorrow", "আগামীকাল"], ["あさって", "asatte", "Day after tomorrow", "আগামী পরশু"], ["きのう", "kinou", "Yesterday", "গতকাল"], ["おととい", "ototoi", "Day before yesterday", "গত পরশু"], ["まいにち", "mainichi", "Every day", "প্রতিদিন"], ["げつようび", "getsuyoubi", "Monday", "সোমবার"], ["かようび", "kayoubi", "Tuesday", "মঙ্গলবার"], ["すいようび", "suiyoubi", "Wednesday", "বুধবার"], ["もくようび", "mokuyoubi", "Thursday", "বৃহস্পতিবার"], ["きんようび", "kinyoubi", "Friday", "শুক্রবার"], ["どようび", "doyoubi", "Saturday", "শনিবার"], ["にちようび", "nichiyoubi", "Sunday", "রবিবার"], ["しゅう", "shuu", "Week", "সপ্তাহ"], ["つき", "tsuki", "Month", "মাস"], ["とし", "toshi", "Year", "বছর"], ["あさ", "asa", "Morning", "সকাল"], ["ひる", "hiru", "Afternoon", "দুপুর"], ["よる", "yoru", "Night", "রাত"], ["ばん", "ban", "Evening", "সন্ধ্যা"], ["はる", "haru", "Spring", "বসন্তকাল"], ["なつ", "natsu", "Summer", "গ্রীষ্মকাল"], ["あき", "aki", "Autumn", "শরৎকাল"], ["ふゆ", "fuyu", "Winter", "শীতকাল"], ["あか", "aka", "Red", "লাল"], ["あお", "ao", "Blue", "নীল"], ["しろ", "shiro", "White", "সাদা"], ["くろ", "kuro", "Black", "কালো"], ["きいろ", "kiiro", "Yellow", "হলুদ"], ["ちゃいろ", "chairo", "Brown", "বাদামী"], ["なに", "nani", "What", "কী"], ["いつ", "itsu", "When", "কখন"], ["じかん", "jikan", "Time", "সময়"]
+            ],
+            "lesson3": [
+                ["ここ", "koko", "Here", "এখানে"], ["そこ", "soko", "There", "সেখানে"], ["あそこ", "asoko", "Over there", "ওইখানে"], ["どこ", "doko", "Where", "কোথায়"], ["へや", "heya", "Room", "রুম"], ["いえ", "ie", "House", "বাড়ি"], ["うち", "uchi", "Home", "নিজের বাড়ি"], ["がっこう", "gakkou", "School", "স্কুল"], ["えき", "eki", "Station", "স্টেশন"], ["びょういん", "byouin", "Hospital", "হাসপাতাল"], ["ぎんこう", "ginkou", "Bank", "ব্যাংক"], ["ゆうびんきょく", "yuubinkyoku", "Post office", "ডাকঘর"], ["こうえん", "kouen", "Park", "পার্ক"], ["としょかん", "toshokan", "Library", "লাইব্রেরি"], ["たてもの", "tatemono", "Building", "ভবন"], ["みち", "michi", "Road", "রাস্তা"], ["こうさてん", "kousaten", "Intersection", "মোড়"], ["みぎ", "migi", "Right", "ডান"], ["ひだり", "hidari", "Left", "বাম"], ["まえ", "mae", "Front", "সামনে"], ["うしろ", "ushiro", "Back", "পেছনে"], ["うえ", "ue", "Up", "উপরে"], ["した", "shita", "Down", "নিচে"], ["なか", "naka", "Inside", "ভেতরে"], ["そと", "soto", "Outside", "বাইরে"], ["となり", "tonari", "Next to", "পাশে"], ["ちかく", "chikaku", "Near", "কাছে"], ["くるま", "kuruma", "Car", "গাড়ি"], ["じてんしゃ", "jitensha", "Bicycle", "সাইকেল"], ["ばす", "basu", "Bus", "বাস"], ["でんしゃ", "densha", "Train", "ট্রেন"], ["ちかてつ", "chikatetsu", "Subway", "পাতাল রেল"], ["ひこうき", "hikouki", "Airplane", "উড়োজাহাজ"], ["ふね", "fune", "Ship", "জাহাজ"], ["そら", "sora", "Sky", "আকাশ"], ["うみ", "umi", "Sea", "সাগর"], ["やま", "yama", "Mountain", "পাহাড়"], ["かわ", "kawa", "River", "নদী"], ["き", "ki", "Tree", "গাছ"], ["はな", "hana", "Flower", "ফুল"], ["いぬ", "inu", "Dog", "কুকুর"], ["ねこ", "neko", "Cat", "বিড়াল"], ["とり", "tori", "Bird", "পাখি"], ["さかな", "sakana", "Fish", "মাছ"], ["あめ", "ame", "Rain", "বৃষ্টি"], ["ゆき", "yuki", "Snow", "তুষার"], ["てんき", "tenki", "Weather", "আবহাওয়া"], ["かぜ", "kaze", "Wind", "বাতাস"], ["まち", "machi", "Town", "শহর"], ["みせ", "mise", "Shop", "দোকান"]
+            ],
+            "lesson4": [
+                ["ほん", "hon", "Book", "বই"], ["じしょ", "jisho", "Dictionary", "অভিধান"], ["ざっし", "zasshi", "Magazine", "ম্যাগাজিন"], ["しんぶん", "shinbun", "Newspaper", "সংবাদপত্র"], ["のうと", "nouto", "Notebook", "খাতা"], ["てちょう", "techou", "Pocket notebook", "ডায়েরি"], ["えんぴつ", "enpitsu", "Pencil", "পেন্সিল"], ["かばん", "kaban", "Bag", "ব্যাগ"], ["かさ", "kasa", "Umbrella", "ছাতা"], ["とけい", "tokei", "Clock", "ঘড়ি"], ["つくえ", "tsukue", "Desk", "ডেস্ক"], ["いす", "isu", "Chair", "চেয়ার"], ["まど", "mado", "Window", "জানালা"], ["どあ", "doa", "Door", "দরজা"], ["てれび", "terebi", "Television", "টেলিভিশন"], ["らじお", "rajio", "Radio", "রেডিও"], ["かめら", "kamera", "Camera", "ক্যামেরা"], ["ぱそこん", "pasokon", "PC", "পিসি/কম্পিউটার"], ["けいたい", "keitai", "Mobile", "মোবাইল ফোন"], ["みず", "mizu", "Water", "পানি"], ["おちゃ", "ocha", "Green tea", "সবুজ চা"], ["こうちゃ", "koucha", "Black tea", "রং চা"], ["こーひー", "kohi", "Coffee", "কফি"], ["ぎゅうにゅう", "gyuunyuu", "Milk", "দুধ"], ["ぱん", "pan", "Bread", "পাউরুটি"], ["ごはん", "gohan", "Rice/Meal", "ভাত/খাবার"], ["にく", "niku", "Meat", "মাংস"], ["さかな", "sakana", "Fish", "মাছ"], ["やさい", "yasai", "Vegetable", "সবজি"], ["くだもの", "kudamono", "Fruit", "ফল"], ["りんご", "ringo", "Apple", "আপেল"], ["みかん", "mikan", "Orange", "কমলালেবু"], ["たまご", "tamago", "Egg", "ডিম"], ["しお", "shio", "Salt", "লবণ"], ["さとう", "satou", "Sugar", "চিনি"], ["しょうゆ", "shouyu", "Soy sauce", "সয়া সস"], ["あたま", "atama", "Head", "মাথা"], ["かお", "kao", "Face", "মুখমণ্ডল"], ["め", "me", "Eye", "চোখ"], ["みみ", "mimi", "Ear", "কান"], ["はな", "hana", "Nose", "নাক"], ["くち", "kuchi", "Mouth", "মুখ"], ["は", "ha", "Tooth", "দাঁত"], ["て", "te", "Hand", "হাত"], ["あし", "ashi", "Leg", "পা"], ["からだ", "karada", "Body", "শরীর"], ["くつ", "kutsu", "Shoes", "জুতো"], ["くつした", "kutsushita", "Socks", "মোজা"], ["ふく", "fuku", "Clothes", "কাপড়"], ["しゃつ", "shatsu", "Shirt", "শার্ট"]
+            ],
+            "lesson5": [
+                ["いきます", "ikimasu", "To go", "যাওয়া"], ["きます", "kimasu", "To come", "আসা"], ["かえります", "kaerimasu", "To return", "ফিরে যাওয়া"], ["たべます", "tabemasu", "To eat", "খাওয়া"], ["のみます", "nomimasu", "To drink", "পান করা"], ["みます", "mimasu", "To see", "দেখা"], ["ききます", "kikimasu", "To listen", "শোনা"], ["よみます", "yomimasu", "To read", "পড়া"], ["かきます", "kakimasu", "To write", "লেখা"], ["かいます", "kaimasu", "To buy", "কেনা"], ["とります", "torimasu", "To take", "তোলা"], ["します", "shimasu", "To do", "করা"], ["あいます", "aimasu", "To meet", "দেখা করা"], ["わかります", "wakarimasu", "To understand", "বুঝতে পারা"], ["あります", "arimasu", "To exist (thing)", "থাকা (বস্তু)"], ["います", "imasu", "To exist (living)", "থাকা (প্রাণী)"], ["おきます", "okimasu", "To wake up", "ঘুম থেকে ওঠা"], ["ねます", "nemasu", "To sleep", "ঘুমানো"], ["はたらきます", "hatarakimasu", "To work", "কাজ করা"], ["やすみます", "yasumimasu", "To rest", "বিশ্রাম নেওয়া"], ["べんきょうします", "benkyou shimasu", "To study", "পড়াশোনা করা"], ["おしえます", "oshiemasu", "To teach", "শেখানো"], ["ならいます", "naraimasu", "To learn", "শেখা"], ["かします", "kashimasu", "To lend", "ধার দেওয়া"], ["かります", "karimasu", "To borrow", "ধার নেওয়া"], ["おおきい", "ookii", "Big", "বড়"], ["ちいさい", "chiisai", "Small", "ছোট"], ["あたらしい", "atarashii", "New", "নতুন"], ["ふるい", "furui", "Old", "পুরনো"], ["いい", "ii", "Good", "ভালো"], ["わるい", "warui", "Bad", "খারাপ"], ["あつい", "atsui", "Hot", "গরম"], ["さむい", "samui", "Cold (weather)", "ঠান্ডা"], ["つめたい", "tsumetai", "Cold (thing)", "ঠান্ডা (বস্তু)"], ["むずかしい", "muzukashii", "Difficult", "কঠিন"], ["やさしい", "yasashii", "Easy", "সহজ"], ["たかい", "takai", "High/Expensive", "দামি/উঁচু"], ["やすい", "yasui", "Cheap", "সস্তা"], ["ひくい", "hikui", "Low", "নিচু"], ["おもしろい", "omoshiroi", "Interesting", "মজার"], ["おいしい", "oishii", "Delicious", "সুস্বাদু"], ["いそがしい", "isogashii", "Busy", "ব্যস্ত"], ["たのしい", "tanoshii", "Fun", "আনন্দদায়ক"], ["しろい", "shiroi", "White", "সাদা"], ["くろい", "kuroi", "Black", "কালো"], ["あかい", "akai", "Red", "লাল"], ["あおい", "aoi", "Blue", "নীল"], ["きれいな", "kirei na", "Beautiful", "সুন্দর"], ["しずかな", "shizuka na", "Quiet", "শান্ত"], ["にぎやかな", "nigiyaka na", "Lively", "কোলাহলপূর্ণ"]
+            ]
         };
+
         const quizDatabase = {};
+
+        // Question Generator
         for (let lesson in rawData) {
             quizDatabase[lesson] = [];
             const items = rawData[lesson];
             for (let i = 0; i < items.length; i++) {
-                const q = items[i][0], r = items[i][1], correctStr = `${items[i][2]} (${items[i][3]})`;
-                let allOptions = [correctStr];
-                quizDatabase[lesson].push({ q: q, r: r, a: allOptions, c: 0 });
+                const q = items[i][0];
+                const r = items[i][1];
+                const correctStr = `${items[i][2]} (${items[i][3]})`;
+                
+                let wrongOptions = [];
+                while (wrongOptions.length < 3) {
+                    let randIdx = Math.floor(Math.random() * items.length);
+                    if (randIdx !== i) {
+                        let wrongStr = `${items[randIdx][2]} (${items[randIdx][3]})`;
+                        if (!wrongOptions.includes(wrongStr)) {
+                            wrongOptions.push(wrongStr);
+                        }
+                    }
+                }
+                
+                let allOptions = [correctStr, ...wrongOptions];
+                // Shuffle Array
+                allOptions.sort(() => Math.random() - 0.5);
+                let correctIdx = allOptions.indexOf(correctStr);
+                
+                quizDatabase[lesson].push({ q: q, r: r, a: allOptions, c: correctIdx });
             }
         }
-        let currentLesson = '', currentQuestionIdx = 0, score = 0, selectedQuestions = [];
-        function showScreen(screenId) { document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active')); document.getElementById(screenId).classList.add('active'); }
-        function startQuiz(lessonKey) { currentLesson = lessonKey; currentQuestionIdx = 0; score = 0; selectedQuestions = quizDatabase[lessonKey]; showScreen('quiz-screen'); loadQuestion(); }
+
+        let currentLesson = '';
+        let currentQuestionIdx = 0;
+        let score = 0;
+        let selectedQuestions = [];
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function startQuiz(lessonKey) {
+            currentLesson = lessonKey;
+            currentQuestionIdx = 0;
+            score = 0;
+            selectedQuestions = quizDatabase[lessonKey];
+            showScreen('quiz-screen');
+            loadQuestion();
+        }
+
         function loadQuestion() {
             document.getElementById('next-btn').style.display = 'none';
+            const total = selectedQuestions.length;
+            document.getElementById('question-counter').innerText = `Question ${currentQuestionIdx + 1}/${total}`;
+            document.getElementById('progress-bar').style.width = `${(currentQuestionIdx / total) * 100}%`;
+
             const q = selectedQuestions[currentQuestionIdx];
             document.getElementById('japanese-word').innerText = q.q;
             document.getElementById('romaji-word').innerText = q.r;
-            const optsList = document.getElementById('options-list'); optsList.innerHTML = '';
-            q.a.forEach((opt, idx) => { const btn = document.createElement('button'); btn.className = 'option-item'; btn.innerText = opt; btn.onclick = () => selectOption(idx, btn); optsList.appendChild(btn); });
+
+            const optsList = document.getElementById('options-list');
+            optsList.innerHTML = '';
+
+            q.a.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-item';
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(idx, btn);
+                optsList.appendChild(btn);
+            });
         }
-        function selectOption(idx, btn) { btn.classList.add('correct'); score++; document.getElementById('next-btn').style.display = 'block'; }
-        function nextQuestion() { currentQuestionIdx++; if (currentQuestionIdx < selectedQuestions.length) loadQuestion(); else showResult(); }
-        function showResult() { showScreen('result-screen'); document.getElementById('score-large').innerText = `${score}/${selectedQuestions.length}`; }
+
+        function selectOption(idx, btn) {
+            const q = selectedQuestions[currentQuestionIdx];
+            const allBtns = document.querySelectorAll('.option-item');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (idx === q.c) {
+                btn.classList.add('correct');
+                score++;
+            } else {
+                btn.classList.add('wrong');
+                allBtns[q.c].classList.add('correct');
+            }
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestionIdx++;
+            if (currentQuestionIdx < selectedQuestions.length) loadQuestion();
+            else showResult();
+        }
+
+        function showResult() {
+            showScreen('result-screen');
+            const total = selectedQuestions.length;
+            document.getElementById('score-large').innerText = `${score}/${total}`;
+            let fb = score >= 40 ? "অসাধারণ! আপনার ভোকাবুলারি অনেক ভালো।" : "Good effort! আরেকটু প্র্যাকটিস করুন।";
+            document.getElementById('result-text').innerText = fb;
+            document.getElementById('progress-bar').style.width = '100%';
+        }
+
         function restartLesson() { startQuiz(currentLesson); }
         function goHome() { showScreen('home-screen'); }
     </script>
